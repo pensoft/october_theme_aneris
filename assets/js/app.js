@@ -257,30 +257,30 @@ $(document).ready(function() {
                 slidesToScroll: 1
             }
         },
-            // {
-            //     breakpoint: breakpoint.sm,
-            //     settings: {
-            //         slidesToShow: 2,
-            //         slidesToScroll: 2,
-            //         arrows: true
-            //     }
-            // },
-            // {
-            //     breakpoint: breakpoint.md,
-            //     settings: {
-            //         slidesToShow: 3,
-            //         slidesToScroll: 3,
-            //         arrows: true
-            //     }
-            // },
-            // {
-            //     breakpoint: breakpoint.lg,
-            //     settings: {
-            //         slidesToShow: 4,
-            //         slidesToScroll: 4,
-            //         arrows: true
-            //     }
-            // }
+            {
+                breakpoint: breakpoint.sm,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: breakpoint.md,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: breakpoint.lg,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    arrows: true
+                }
+            }
         ]
     });
 

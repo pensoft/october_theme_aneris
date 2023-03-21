@@ -385,7 +385,7 @@ nav .pr.p-search.large.search-btn{
         background: @white-color;
     }
 
-    #menu, #menu > *, .navbar-nav, .navbar-nav > *{
+    #menu, #menu > *:not(.search), .navbar-nav, .navbar-nav > *:not(.search){
         visibility: hidden;
     }
 
@@ -485,6 +485,15 @@ nav .pr.p-search.large.search-btn{
             opacity: 0.7!important;
         }
         &.p-twitter{
+            margin-top: 2px!important;
+            &:before{
+                .breakpoint-large-down({
+                    color: @link-color;
+                });
+            }
+
+        }
+        &.p-instagram{
             margin-top: 2px!important;
             &:before{
                 .breakpoint-large-down({
