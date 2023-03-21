@@ -136,7 +136,7 @@ $this['related'] = $related;
                                 </div>
 
                                 <div class="body">{{ record.content|length > 200 ? record.content|striptags|slice(0, 200)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
-                                <span class="read_more">Read more</span>
+                                <span class="read_more type_button">Read more</span>
                             </div>
                         </a>
                     </div>

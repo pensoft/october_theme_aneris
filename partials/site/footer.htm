@@ -33,8 +33,8 @@ use Pensoft\Partners\Models\Partners as Partner;
 function onStart(){
     //supporting
     $this['coordinating_partners'] = Partner::where('type', 4)->get();
-    //transnational
-    $this['consortium_partners'] = Partner::where('type', 2)->get();
+    //main
+    $this['consortium_partners'] = Partner::where('type', 1)->get();
 }
 ?>
 ==
@@ -82,9 +82,9 @@ function onStart(){
                     Funded by the European Union
                 </div>
                 <div class="funding-text col-xs-12">
-                    {% if footer_funds_text %}
-                    <span class="align-items-center mt-sm-0 mt-1">{{this.theme.footer_funds_text}}</span>
-                    {%endif %}
+                    <span class="align-items-center mt-sm-0 mt-1">
+                        ANERIS receives funding from the European Union’s Horizon Europe research and innovation programme under grant agreement No 101094924. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Commission. Neither the EU nor the EC can be held responsible for them.
+                    </span>
                 </div>
                 {% endif %}
                 <div class="col-xs-12 powered-by-container">
@@ -93,7 +93,7 @@ function onStart(){
                             <a style="flex:0 0 auto; font-size: 18px;" href="/privacy-policy">Privacy Policy</a>
                         </div>
                         <div class="col-md-6 col-xs-12 end-md center-xs">
-                            <div class="powered-by my-1 my-lg-0 px-1 start-sm center-xs">
+                            <div class="powered-by my-1 my-lg-0 px-1 start-md center-xs">
                                 <span>Designed and powered by</span> <a href="https://pensoft.net/" target="_blank">
                                 <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" /></a>
                             </div>
@@ -104,10 +104,10 @@ function onStart(){
             </div>
             <div class="col-md-6 col-xs-12 ">
                 <div class="row between-xs">
-                    <div class="col-xs-12 col-md-6 start-md center-xs col-sm-6 start-sm">
+                    <div class="col-xs-12 col-lg-6 start-md center-xs col-sm-6 start-sm">
                         <img class="project_footer_logo" src="{{ 'assets/images/ANERIS logo-white.svg'|theme }}" />
                         <div class="head">Contact</div>
-                        <a href="mailto:project@aneris.com" target="_blank"><img class="mail_icon" src="{{ 'assets/images/mail.svg'|theme }}"> project@aneris.com</a>
+                        <a href="mailto:project@aneris.eu" target="_blank"><img class="mail_icon" src="{{ 'assets/images/mail.svg'|theme }}"> project@aneris.eu</a>
                         <div class="head social">Follow ANERIS
                             <div class="social-networks">
                                 <div class="icons mt-1">
@@ -130,12 +130,12 @@ function onStart(){
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-2 start-md center-xs col-sm-6 start-sm">
+                    <div class="col-xs-12 col-lg-2 start-md center-xs col-sm-6 start-sm">
                         <div class="head">Links</div>
                         {% component 'footer_menu1' %}
 
                     </div>
-                    <div class="col-xs-12 col-md-4 start-md center-xs col-sm-6 start-sm">
+                    <div class="col-xs-12 col-lg-4 start-md center-xs col-sm-6 start-sm">
                         <div class="head">&nbsp;</div>
                         {% component 'footer_menu2' %}
 

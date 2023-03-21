@@ -22,17 +22,16 @@ function onStart(){
 	$this['presentations'] =  Presentations::get();
 	$this['pressreleases'] =  Pressreleases::get();
 	$this['videos'] =  Videos::get();
-	$this['graphics'] =  Graphic::get();
 }
 ?>
 ==
 <div class="container-fluid">
     <div class="container">
-    <div class="row">
+        <div class="row tabs">
         {% if logos.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/logo" title="Logo">
+                <a href="#logo" title="Logo">
                     <div class="card_border"><span class="card_image_container" style="background: url({{'logo.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/logo" title="Logo"></span></div>
                     <span class="media_label">Logo</span>
                 </a>
@@ -43,7 +42,7 @@ function onStart(){
         {% if flyers.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/promotional-materials" title="Promotional materials">
+                <a href="#promotional-materials" title="Promotional materials">
                     <div class="card_border"><span class="card_image_container" style="background: url({{'promotional-materials.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/promotional-materials" title="Promotional materials"></span></div>
                     <span class="media_label">Promotional materials</span>
                 </a>
@@ -55,7 +54,7 @@ function onStart(){
         {% if graphics.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/poster" title="Poster">
+                <a href="#poster" title="Poster">
                     <div class="card_border"><span class="card_image_container" style="background: url({{'poster.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/poster" title="Poster"></span></div>
                     <span class="media_label">Poster</span>
                 </a>
@@ -66,7 +65,7 @@ function onStart(){
         {% if pressreleases.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/press-releases" title="Press releases">
+                <a href="#press-releases" title="Press releases">
                     <span class="card_image_container" style="background: url({{'press-releases.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/press-releases" title="Press releases"></span>
                     <span class="media_label">Press releases</span>
                 </a>
@@ -76,7 +75,7 @@ function onStart(){
         {% if newsletters.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/newsletters" title="Newsletter">
+                <a href="#newsletters" title="Newsletter">
                     <span class="card_image_container" style="background: url({{'newsletter.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/newsletters" title="Newsletter"></span>
                     <span class="media_label">Newsletter</span>
                 </a>
@@ -88,7 +87,7 @@ function onStart(){
         {% if videos.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/videos" title="Videos">
+                <a href="#videos" title="Videos">
                     <div class="card_border"><span class="card_image_container" style="background: url({{'videos.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/videos" title="Videos"></span></div>
                     <span class="media_label">Videos</span>
                 </a>
@@ -98,11 +97,10 @@ function onStart(){
 
 
 
-        <!--        //Others-->
         {% if presentations.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/others" title="Others">
+                <a href="#others" title="Others">
                     <span class="card_image_container" style="background: url({{'other.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/others" title="Others"></span>
                     <span class="media_label">Others</span>
                 </a>
@@ -112,5 +110,137 @@ function onStart(){
 
 
     </div>
-</div>
+        <!--tabs content	-->
+        {% if logos.count() %}
+        <div class="row card-container-row start-xs logo" id="logo" style="display: none;">
+            {% for record in logos %}
+            {# Use spaceless tag to remove spaces inside the A tag. #}
+            {% spaceless %}
+            {% if record.logo_image %}
+            <div class="col-md-3 col-xs-12 center-xs">
+                <p class="logo_container"><img src="{{record.logo_image.path}}" title="{{record.name}}"></p>
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <div class="card_title">Download {{record.name}}</div>
+                        {% if record.file_jpg %}
+                        <a href="{{ ''| page }}?{{queries}}&download={{record.file_jpg.id}}&file_name={{record.file_jpg.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  JPG</a> &nbsp;
+                        {% endif %}
+                        {% if record.file_png %}
+                        <a href="{{ ''| page }}?{{queries}}&download={{record.file_png.id}}&file_name={{record.file_png.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  PNG</a> &nbsp;
+                        {% endif %}
+                        {% if record.file_eps %}
+                        <a href="{{ ''| page }}?{{queries}}&download={{record.file_eps.id}}&file_name={{record.file_eps.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  SVG</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% endspaceless %}
+            {% else %}
+            {{ noRecordsMessage }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        {% if flyers.count() %}
+        <div class="row card-container-row start-xs flyer" id="promotional-materials" style="display: none;">
+            {% for record in flyers %}
+            {# Use spaceless tag to remove spaces inside the A tag. #}
+            {% spaceless %}
+            {% if record.flyer_image %}
+            <div class="col-md-4 col-xs-12 center-xs">
+                <h3><b>{{record.name}}</b></h3>
+                <p class="logo_container"><img src="{{record.flyer_image.path}}" title="{{record.name}}"></p>
+
+                {% if record.file %}
+                <div class="col-xs-12">
+                    <div class="text-center">
+
+                        <a href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.file.file_name|replace({' ': '_'})}}" title="{{record.name}}" class="btn btn-primary">Download</a>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+
+
+            {% endif %}
+
+            {% endspaceless %}
+            {% else %}
+            {{ noRecordsMessage }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if pressreleases.count() %}
+        <div class="row card-container-row start-xs press-releases press-relieses-container" id="press-releases" style="display: none;">
+            {% for record in pressreleases %}
+            <div class="col-xs-12">
+                <div class="press-relies-item">
+                    <span class="date"> {{record.date |date('d F Y')}}</span> <br><br>
+                    <span class="card_title">{{record.name}}</span><br><br>
+
+                    <div class="body">{{record.description | raw}}</div>
+                    <div class="row link">
+                        {% for link in record.link %}
+                        <a href="{{link.url}}" target="_blank" class="btn btn-primary">{{link.text}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if newsletters.count() %}
+        <div class="row card-container-row start-xs newsletters" id="newsletters" style="display: none;">
+            {% for record in newsletters %}
+            <div class="col-md-3 col-xs-12 newsletter_item">
+                <div class="text-center">
+                    <div class="date">{{record.date |date('F Y')}}</div>
+                    <span class="card_image_container" style="background: url({{record.newsletter_image.path}}) center center no-repeat;" title="{{record.name}}"></span>
+                    <span class="card_title" style="min-height: 100px;">{{record.name}}</span>
+                    <br><br><a href="{{ record.file.path }}#{{record.file.file_name}}" target="_blank" title="{{record.name}}" class="btn btn-primary">Download</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if videos.count() %}
+        <div class="row card-container-row start-xs videos" id="videos" style="display: none;">
+            {% for record in videos %}
+            <div class="col-md-6 col-xs-12">
+                <div class="">
+                    <p class="card_title font-weight-bold">{{record.name}}</p>
+                    {% if record.file %}
+                    <video controls="" width="100%"><source src="{{record.file.path}}" type="video/mp4"></video>
+
+                    <p>Attachment: {{record.file.file_name}}, {{record.file.size}}</p>
+
+                    <p><a class=" btn btn-primary" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}">Download</a></p>
+
+                    {% endif %}
+
+                    {% if record.youtube_url %}
+                    <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="{{record.youtube_url}}" width="100%" height="422"></iframe>
+
+                    <p>&nbsp;</p>
+                    {% endif %}
+
+                    {% if record.vimeo_url %}
+                    <iframe width="100%" height="422" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            src="{{record.vimeo_url}}">
+                    </iframe>
+                    <p>&nbsp;</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
 </div>

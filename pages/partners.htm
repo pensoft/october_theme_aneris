@@ -8,14 +8,7 @@ header_image = "about.jpg"
 
 [jumbotron consortium]
 jumbotron = "consortium"
-title = 1
-background = "transperant"
-templates = "template1"
-description_limit = 0
-
-[jumbotron]
-jumbotron = "consortium"
-title = 1
+title = 0
 background = "transperant"
 templates = "template1"
 description_limit = 0
@@ -56,38 +49,66 @@ return Profiles::where('partner_id', $id)->where('category_id',  2)->get();
 }
 ?>
 ==
-<div class="container-fluid partners_background">
-    <div class="svg_map">
-        {% partial 'components/svg' %}
-    </div>
-    <div class="container">
-        <span class="tooltiptext" id="tooltip">Bulgaria</span>
-        {% if countries.count() %}
-        <div class="row">
-            <div class="col-lg-7 col-sm-6 col-xs-12">
-                <div class="row">
-                    <div class="col-xs-12 consortium">
-                        {% component 'jumbotron' %}
-                    </div>
-                </div>
-                <div class="row countries_list">
-                    {% for country in countries %}
-                    <div class="col-lg col-xs-6 country-item">
-                        <a class="country_map" href="javascript:void(0);" onclick="onCustomPartners('{{ country.code }}')">
-                            <img alt="{{ country.name }}" src="{{'countries/'|media}}/{{country.name|lower|replace({' ': '_'})}}.svg">
-                        </a>
-                        <div class="country_label">
-                            {{ country.name }}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+<div class="container">
+        <div class="consortium center-xs">
+            {% component 'consortium' %}
         </div>
 
-        {% endif %}
+        <div class="tabs">
+            <a class="" href="#mapView">Map view</a>
+            <a class="" href="#listView">List view</a>
+        </div>
+
+        <div id="mapView">
+            <div class="svg_map">
+                {% partial 'components/svg' %}
+            </div>
+        </div>
+        <div id="listView">
+            {% for partner in partners %}
+            <div class="col-xs-12 partner-item">
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 start-md center-xs partner_cover"><img src="{{partner.cover.thumb(197, auto, {mode: 'crop'})}}"></div>
+                    <div class="col-xs-12 col-md-7 start-md center-xs partner_title">{{partner.instituion}}</div>
+                    <div class="col-xs-12 col-md-3 end-md start-xs partner_link"><a href="{{partner.instituion_url}}" class="btn btn-primary" target="_blank">Visit website</a></div>
+                    <div class="col-xs-12 partner_description">{{partner.content|raw}}</div>
+                </div>
+                {% if insider_members.getIM(partner.id).count > 0 %}
+                <div id="accordion-insider-members" class="partners-insider">
+                    <div class="accordion-border">
+                        <div class="row middle-xs accordion-toggle">
+                            <span class="plusminus"><span>Members</span><div class="plus"></div></span>
+                        </div>
+                        <div class="accordion-content" style="display: none;">
+                            <div class="row top-xs">
+                                {% for profile in insider_members.getIM(partner.id) %}
+                                <div class="contact_info row">
+                                    <div class="col-xs-12 coordinator_image">
+                                        {% if profile.avatar %}
+                                        <!--                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,145,{'mode':'crop'})}}">-->
+                                        <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,165,{'mode':'crop'})}}">
+                                        {% else %}
+                                        <img alt="{{ profile.names }}" src="{{ 'avatar.svg'|media }}" width="175" height="148" class="no-image">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-xs-12 coordinator_info">
+                                        <h3>{{ profile.names }}</h3>
+                                        <div class="body">{{ profile.position }}</div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            {% endfor %}
+        </div>
 
 
+        <span class="tooltiptext" id="tooltip">Bulgaria</span>
         <div class="container partners-map-container">
             <div id="mycomponentpartners" class="row">
 
@@ -98,4 +119,3 @@ return Profiles::where('partner_id', $id)->where('category_id',  2)->get();
 
 
     </div>
-</div>

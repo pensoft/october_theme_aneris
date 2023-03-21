@@ -55,8 +55,9 @@ function onStart(){
         </div>
     </div>
 </div>
-
-<div class="container work_packages">
+<div id="structure"></div>
+<div class="container-fluid work_packages">
+<div class="container">
     <h2>Work Packages</h2>
     <div class="row work_packages_container">
         {% for key, item in accorions %}
@@ -65,11 +66,11 @@ function onStart(){
                 <div class="wp_prefix wp_prefix_{{key}}"></div>
                 <div class="wp_title">{{item.title|raw}}</div>
             </div>
+            <div class="wp_content wp_content_{{key}}">
+                {{item.body|raw}}
+            </div>
         </div>
-        <div class="wp_content wp_content_{{key}}">
-            {{item.body|raw}}
-        </div>
-
         {% endfor %}
     </div>
+</div>
 </div>

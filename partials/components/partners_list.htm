@@ -1,7 +1,7 @@
 {% for partner in partners %}
 <div class="col-xs-12 partner-item">
     <div class="row">
-        <div class="col-xs-12 col-md-2 start-md center-xs partner_cover"><img src="{{partner.cover.thumb(auto, 80, {mode: 'crop'})}}"></div>
+        <div class="col-xs-12 col-md-2 start-md center-xs partner_cover"><img src="{{partner.cover.thumb(197, auto, {mode: 'crop'})}}"></div>
         <div class="col-xs-12 col-md-7 start-md center-xs partner_title">{{partner.instituion}}</div>
         <div class="col-xs-12 col-md-3 end-md start-xs partner_link"><a href="{{partner.instituion_url}}" class="btn btn-primary" target="_blank">Visit website</a></div>
         <div class="col-xs-12 partner_description">{{partner.content|raw}}</div>
@@ -18,7 +18,8 @@
                     <div class="contact_info row">
                         <div class="col-xs-12 coordinator_image">
                             {% if profile.avatar %}
-                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,145,{'mode':'crop'})}}">
+<!--                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,145,{'mode':'crop'})}}">-->
+                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,165,{'mode':'crop'})}}">
                             {% else %}
                             <img alt="{{ profile.names }}" src="{{ 'avatar.svg'|media }}" width="175" height="148" class="no-image">
                             {% endif %}

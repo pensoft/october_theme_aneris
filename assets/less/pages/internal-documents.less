@@ -412,7 +412,7 @@ a:hover .arrow-left{
   margin-right: 10px;
   background: url('../../assets/images/drag.svg') no-repeat;
   background-size: cover;
-  background-position-x: -6px;
+  background-position-x: -10px;
   .breakpoint-small-down({
     margin-right: 5px;
   });
@@ -462,24 +462,20 @@ a:hover .arrow-left{
 }
 
 .folder-background{
-  display: flex;
-  background-size: 60px!important;
-  height: 120px!important;
-  width: 120px;
-  border-radius: 50%;
-  margin: 0 auto;
-    border: 27px solid #D6CBC8 ;
-    padding: 20px;
-    //transition: all 0.3s;
-  &:hover{
-      border: 3px solid #D6CBC8 ;
-      padding: 44px;
-  }
-  .breakpoint-small-down({
-    width: 150px!important;
-    height: 150px!important;
-    background-size: 60px!important;
-  })
+    height: 170px;
+    width: 193px;
+    display: block;
+    margin: 0 auto;
+    background-size: 80% !important;
+    transition: all 0.5s;
+    &:hover{
+        background-size: 100% !important;
+    }
+  //.breakpoint-small-down({
+  //  width: 150px!important;
+  //  height: 150px!important;
+  //  background-size: 60px!important;
+  //})
 }
 
 .internal-documents, .documents-search{
@@ -512,6 +508,7 @@ a:hover .arrow-left{
     height: 17px;
     position: relative;
     display: inline-block;
+    margin-left: 0!important;
   }
 
   .plus{
@@ -553,7 +550,6 @@ a:hover .arrow-left{
   }
 
   .row.middle-xs.between-xs .search {
-      background: @white-color;
       position: relative;
       top: unset;
       width: auto;

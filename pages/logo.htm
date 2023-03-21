@@ -67,7 +67,7 @@ return Redirect::to('/media-center/logo');
             <p class="logo_container"><img src="{{record.logo_image.path}}" title="{{record.name}}"></p>
             <div class="col-xs-12">
                 <div class="text-center">
-                    <b>Download {{record.name}}</b> <br><br>
+                    <div class="card_title">Download {{record.name}}</div>
                     {% if record.file_jpg %}
                     <a href="{{ ''| page }}?{{queries}}&download={{record.file_jpg.id}}&file_name={{record.file_jpg.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  JPG</a> &nbsp;
                     {% endif %}

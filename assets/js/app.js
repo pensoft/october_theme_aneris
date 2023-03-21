@@ -54,6 +54,28 @@ $(document).ready(function() {
 
     $("nav").removeClass("no-transition");
 
+    if (width < 992) { // mobile
+        $('#menuToggle input[type="checkbox"]').change(function(){
+            var checked = $(this).is(":checked");
+            if(checked){
+                $('#menu').show("slide", { direction: "right" }, 400);
+                $('#search').hide();
+                $('#menu, #menu *').css({
+                    'visibility': 'visible'
+                });
+                $('body', 'html').css({
+                    'overflow': 'hidden'
+                });
+            }else{
+                $('#menu').hide("slide", { direction: "right" }, 400);
+                $('#search').hide();
+                $('body', 'html').css({
+                    'overflow': 'auto'
+                });
+            }
+        });
+    }
+
 
     $('.work_packages .accordion-content, .partners_list_container .accordion-toggle, .messages .accordion-toggle').each(function( index, value ) {
         $(value).find('a').attr( "onclick", "window.open(this.href, '_blank');" )
@@ -97,15 +119,15 @@ $(document).ready(function() {
 	$('.see_all_partners_link').hide();
 
 
-    // $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
-    //     '<a class="folder-background" style="display:flex; background: url(/storage/app/media/working-documents-live.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/living-documents" title="Working documents (live)"></a>\n' +
-    //     '<h3 class="card-header"><a href="/internal-repository/living-documents" title="Working documents (live)">Working documents (live)</a></h3>\n' +
-    //     '</div>').insertAfter($('.card.internal').last());
-    //
-    // $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
-    //     '<a class="folder-background" style="display:flex; background: url(/storage/app/media/forms.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/reporting-forms" title="Reporting forms"></a>\n' +
-    //     '<h3 class="card-header"><a href="/internal-repository/reporting-forms" title="Forms">Reporting forms</a></h3>\n' +
-    //     '</div>').insertAfter($('.card.internal:nth-child(5)'));
+    $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
+        '<a class="folder-background" style="display:flex; background: url(/storage/app/media/working-documents-live.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/living-documents" title="Working documents (live)"></a>\n' +
+        '<h3 class="card-header"><a href="/internal-repository/living-documents" title="Working documents (live)">Working documents (live)</a></h3>\n' +
+        '</div>').insertAfter($('.card.internal').last());
+
+    $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
+        '<a class="folder-background" style="display:flex; background: url(/storage/app/media/forms.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/reporting-forms" title="Reporting forms"></a>\n' +
+        '<h3 class="card-header"><a href="/internal-repository/reporting-forms" title="Forms">Reporting forms</a></h3>\n' +
+        '</div>').insertAfter($('.card.internal:nth-child(5)'));
 
     $('<div class="mark"></div>').insertAfter($('.group-holder input'));
 
@@ -280,12 +302,12 @@ function showHideWP(target){
     // $('.work_packages_container .wp_content').hide();
     //     $(target).find('.prefix_container').removeClass('active');
     $('.prefix_container').removeClass('active');
-        if (!$(target).next('.wp_content').is(':visible')) {
-            $('.work_packages_container .wp_content').hide();
-            $(target).next('.wp_content').show();
+        if (!$(target).find('.wp_content').is(':visible')) {
+            $('.work_packages_container .wp_content').slideUp();
+            $(target).find('.wp_content').slideDown();
             $(target).find('.prefix_container').addClass('active');
         } else {
-            $(target).next('.wp_content').hide();
+            $(target).find('.wp_content').slideUp();
 
         }
     // }
@@ -408,11 +430,13 @@ function appendSignOut() {
     });
 }
 
+
 function appendSearchAndSocialMedia(){
 	var liSearch = '<li class="nav-item search_field"><a href=\"javascript: void(0);\" onclick=\"showSearchForm();\"></a></li>';
 	var liSocial = '<li class="nav-item social">' +
-        '<a href=\"https://twitter.com/soils4europe\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a>' +
-        '<a href=\"https://www.linkedin.com/company/soils-for-europe\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a></li>';
+        '<a href=\"https://www.linkedin.com/company/anerisproject/\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a>' +
+        '<a href=\"https://www.linkedin.com/company/soils-for-europe\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a>' +
+        '<a href=\"https://www.instagram.com/aneris_project/" target=\"_blank\" class=\"pr p-instagram big\" target=\"_blank\"></a></li>';
 	var menu = $('#menuToggle');
 	menu.find('>ul').append(liSearch).append(liSocial);
 }

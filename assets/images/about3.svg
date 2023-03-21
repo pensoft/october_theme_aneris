@@ -1,28 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="65.189" height="62.96" viewBox="0 0 65.189 62.96">
-  <g id="Group_14813" data-name="Group 14813" transform="translate(-656 -1894.196)">
-    <path id="Path_26623" data-name="Path 26623" d="M47.343,8.047C36.313-2.347,20.966-2.772,9.77,7.356,3.852,12.709-.736,20.9.1,33.371A35.568,35.568,0,0,0,2.413,44.364C7.265,56.373,27.2,55.911,28.3,55.909q1.076,0,2.151.059a39.075,39.075,0,0,1,7.472,1.155c3.509.894,7.977,1.343,11.969-.35a12.717,12.717,0,0,0,1.971-1.048c2.194-1.425,4.649-2.787,6.085-6.167a32.682,32.682,0,0,0,2.243-9.68C61.571,25.449,54.691,14.971,47.343,8.047Z" transform="translate(661.048 1894.196) rotate(5)" fill="#3fc0c8"/>
-    <g id="Group_14625" data-name="Group 14625" transform="translate(0.395 -0.647)">
-      <g id="Group_14568" data-name="Group 14568" transform="translate(1.219 -36.714)">
-        <g id="Ellipse_53" data-name="Ellipse 53" transform="matrix(0.978, -0.208, 0.208, 0.978, 680.395, 1950.714)" fill="none" stroke="#fff" stroke-width="1.3">
-          <circle cx="4.726" cy="4.726" r="4.726" stroke="none"/>
-          <circle cx="4.726" cy="4.726" r="4.076" fill="none"/>
-        </g>
-        <path id="Path_26626" data-name="Path 26626" d="M3.926,0h6.107a3.926,3.926,0,0,1,0,7.852L6.94,5.908,3.926,7.852A3.926,3.926,0,0,1,3.926,0Z" transform="translate(692.959 1967.812) rotate(180)" fill="#fff"/>
-      </g>
-      <g id="Group_14570" data-name="Group 14570" transform="translate(667.013 1921.567)">
-        <g id="Ellipse_53-2" data-name="Ellipse 53" transform="matrix(0.978, -0.208, 0.208, 0.978, 1.101, 1.551)" fill="none" stroke="#fff" stroke-width="1.3">
-          <ellipse cx="3.73" cy="3.73" rx="3.73" ry="3.73" stroke="none"/>
-          <ellipse cx="3.73" cy="3.73" rx="3.08" ry="3.08" fill="none"/>
-        </g>
-        <path id="Path_26626-2" data-name="Path 26626" d="M3.1,0h4.82a3.1,3.1,0,0,1,0,6.2L5.477,4.663,3.1,6.2A3.1,3.1,0,0,1,3.1,0Z" transform="translate(11.017 15.045) rotate(180)" fill="#fff"/>
-      </g>
-      <g id="Group_14628" data-name="Group 14628" transform="translate(697.013 1921.567)">
-        <g id="Ellipse_53-3" data-name="Ellipse 53" transform="matrix(0.978, -0.208, 0.208, 0.978, 1.101, 1.551)" fill="none" stroke="#fff" stroke-width="1.3">
-          <ellipse cx="3.73" cy="3.73" rx="3.73" ry="3.73" stroke="none"/>
-          <ellipse cx="3.73" cy="3.73" rx="3.08" ry="3.08" fill="none"/>
-        </g>
-        <path id="Path_26626-3" data-name="Path 26626" d="M3.1,0h4.82a3.1,3.1,0,0,1,0,6.2L5.477,4.663,3.1,6.2A3.1,3.1,0,0,1,3.1,0Z" transform="translate(11.017 15.045) rotate(180)" fill="#fff"/>
-      </g>
-    </g>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-84.8 91.4 60 59.2" style="enable-background:new -84.8 91.4 60 59.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#3FC0C8;}
+	.st1{fill:none;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:1.3;}
+	.st3{fill:#FFFFFF;}
+</style>
+<g id="Group_14813" transform="translate(-656 -1894.196)">
+	<path id="Path_26623" class="st0" d="M620.5,1995.4c-10.1-11.3-25.3-13.1-37.4-4c-6.4,4.8-11.6,12.6-11.9,25.1
+		c-0.1,3.8,0.3,7.5,1.3,11.2c3.8,12.4,23.7,13.7,24.8,13.8c0.7,0.1,1.4,0.1,2.1,0.2c2.5,0.4,5,1,7.3,1.8c3.4,1.2,7.8,2,12,0.7
+		c0.7-0.2,1.4-0.5,2.1-0.9c2.3-1.2,4.9-2.4,6.6-5.6c1.5-3,2.5-6.2,3.1-9.4C633.2,2014,627.2,2002.9,620.5,1995.4z"/>
+	<g id="Group_14625" transform="translate(0.395 -0.647)">
+		<g id="Group_14568" transform="translate(1.219 -36.714)">
+			<g id="Ellipse_53" transform="matrix(0.978, -0.208, 0.208, 0.978, 680.395, 1950.714)">
+				<circle class="st1" cx="-98.9" cy="73.7" r="4.7"/>
+				<circle class="st2" cx="-98.9" cy="73.7" r="4.1"/>
+			</g>
+			<path id="Path_26626" class="st3" d="M602,2056.9h-6.1c-2.2,0-3.9-1.8-3.9-3.9c0-2.2,1.8-3.9,3.9-3.9l3.1,1.9l3-1.9
+				c2.2,0,3.9,1.8,3.9,3.9S604.2,2056.9,602,2056.9z"/>
+		</g>
+		<g id="Group_14570" transform="translate(667.013 1921.567)">
+			<g id="Ellipse_53-2" transform="matrix(0.978, -0.208, 0.208, 0.978, 1.101, 1.551)">
+				
+					<ellipse transform="matrix(-0.9781 -0.208 0.208 -0.9781 -212.7495 123.0918)" class="st1" cx="-99.9" cy="72.7" rx="3.7" ry="3.7"/>
+				
+					<ellipse transform="matrix(-0.9781 -0.208 0.208 -0.9781 -212.7495 123.0918)" class="st2" cx="-99.9" cy="72.7" rx="3.1" ry="3.1"/>
+			</g>
+			<path id="Path_26626-2" class="st3" d="M-79.1,104.1h-4.8c-1.7,0-3.1-1.4-3.1-3.1c0-1.7,1.4-3.1,3.1-3.1l2.4,1.5l2.4-1.5
+				c1.7,0,3.1,1.4,3.1,3.1C-76,102.7-77.4,104.1-79.1,104.1z"/>
+		</g>
+		<g id="Group_14628" transform="translate(697.013 1921.567)">
+			<g id="Ellipse_53-3" transform="matrix(0.978, -0.208, 0.208, 0.978, 1.101, 1.551)">
+				
+					<ellipse transform="matrix(-0.9781 -0.208 0.208 -0.9781 -212.7495 123.0918)" class="st1" cx="-99.9" cy="72.7" rx="3.7" ry="3.7"/>
+				
+					<ellipse transform="matrix(-0.9781 -0.208 0.208 -0.9781 -212.7495 123.0918)" class="st2" cx="-99.9" cy="72.7" rx="3.1" ry="3.1"/>
+			</g>
+			<path id="Path_26626-3" class="st3" d="M-79.1,104.1h-4.8c-1.7,0-3.1-1.4-3.1-3.1c0-1.7,1.4-3.1,3.1-3.1l2.4,1.5l2.4-1.5
+				c1.7,0,3.1,1.4,3.1,3.1C-76,102.7-77.4,104.1-79.1,104.1z"/>
+		</g>
+	</g>
+</g>
 </svg>
