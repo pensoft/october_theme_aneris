@@ -501,7 +501,9 @@ ul.pagination{
     }
 
     .footer-menu-container{
-      .col-xs-12.col-md-2.col-sm-6{
+      .col-md-6.col-xs-12{
+          padding: 20px;
+          margin: 30px 0;
         .breakpoint-large-down ({
           margin-top: 20px;
         });
@@ -1036,7 +1038,8 @@ now override the 3.3 new styles for modern browsers & apply opacity
     img{
         height: 118px;
         width: auto;
-        object-fit: cover;
+        max-width: 20%;
+        object-fit: contain;
         .breakpoint-small-down({
             width: 100%;
             height: auto;
@@ -1161,6 +1164,9 @@ now override the 3.3 new styles for modern browsers & apply opacity
             }
 
         }
+        .breakpoint-large-down({
+            display: none!important;
+        });
     }
 
     /* slick dots */

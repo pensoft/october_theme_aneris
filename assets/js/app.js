@@ -121,7 +121,7 @@ $(document).ready(function() {
 
     $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
         '<a class="folder-background" style="display:flex; background: url(/storage/app/media/working-documents-live.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/living-documents" title="Working documents (live)"></a>\n' +
-        '<h3 class="card-header"><a href="/internal-repository/living-documents" title="Working documents (live)">Working documents (live)</a></h3>\n' +
+        '<h3 class="card-header"><a href="/internal-repository/living-documents" title="Living documents">Living documents</a></h3>\n' +
         '</div>').insertAfter($('.card.internal').last());
 
     $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
@@ -237,15 +237,15 @@ $(document).ready(function() {
         pauseOnHover: true,
         infinite: true,
         dots: true,
-        arrows: false,
+        arrows: true,
         speed: 1000,
 
         mobileFirst: true,
 
         slidesToShow: 4,
         slidesToScroll: 4,
-        // autoSlidesToShow: true,
-        // variableWidth: true,
+        autoSlidesToShow: true,
+        variableWidth: true,
         // prevArrow: true,
         // nextArrow: true,
 
@@ -257,30 +257,30 @@ $(document).ready(function() {
                 slidesToScroll: 1
             }
         },
-            {
-                breakpoint: breakpoint.sm,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    arrows: true
-                }
-            },
-            {
-                breakpoint: breakpoint.md,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
-                    arrows: true
-                }
-            },
-            {
-                breakpoint: breakpoint.lg,
-                settings: {
-                    slidesToShow: 7,
-                    slidesToScroll: 7,
-                    arrows: true
-                }
-            }
+            // {
+            //     breakpoint: breakpoint.sm,
+            //     settings: {
+            //         slidesToShow: 2,
+            //         slidesToScroll: 2,
+            //         arrows: true
+            //     }
+            // },
+            // {
+            //     breakpoint: breakpoint.md,
+            //     settings: {
+            //         slidesToShow: 3,
+            //         slidesToScroll: 3,
+            //         arrows: true
+            //     }
+            // },
+            // {
+            //     breakpoint: breakpoint.lg,
+            //     settings: {
+            //         slidesToShow: 4,
+            //         slidesToScroll: 4,
+            //         arrows: true
+            //     }
+            // }
         ]
     });
 
