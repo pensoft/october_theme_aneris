@@ -220,7 +220,7 @@ $(document).ready(function() {
     // bootstrap 3 breakpoints
     const breakpoint = {
         // extra small screen / phone
-        xs: 480,
+        xs: 280,
         // small screen / tablet
         sm: 768,
         // medium screen / desktop
@@ -253,15 +253,15 @@ $(document).ready(function() {
             {
             breakpoint: breakpoint.xs,
             settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToShow: 2,
+                slidesToScroll: 2
             }
         },
             {
                 breakpoint: breakpoint.sm,
                 settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
                     arrows: true
                 }
             },

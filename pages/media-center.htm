@@ -14,6 +14,7 @@ use Pensoft\Media\Models\Presentations;
 use Pensoft\Media\Models\Pressreleases;
 use Pensoft\Media\Models\Videos;
 use Pensoft\Media\Models\Graphic;
+use System\Models\File;
 
 function onStart(){
 	$this['logos'] =  MediaLogos::get();
@@ -23,6 +24,23 @@ function onStart(){
 	$this['pressreleases'] =  Pressreleases::get();
 	$this['videos'] =  Videos::get();
 }
+
+
+function onDownloadFile(){
+	$file = File::find(post('id'));
+	$pathToFile = $file->getLocalPath();
+    $fileName = $file->file_name;
+    $fileType = $file->content_type;
+    $headers = [
+        'HTTP/1.1 200 OK',
+        'Pragma: public',
+        'Content-Type: '.$fileType,
+        'Content-Type: application/force-download'
+    ];
+
+    return Response::download($pathToFile, $fileName, $headers);
+}
+
 ?>
 ==
 <div class="container-fluid">
@@ -123,13 +141,23 @@ function onStart(){
                     <div class="text-center">
                         <div class="card_title">Download {{record.name}}</div>
                         {% if record.file_jpg %}
-                        <a href="{{ ''| page }}?{{queries}}&download={{record.file_jpg.id}}&file_name={{record.file_jpg.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  JPG</a> &nbsp;
+                        {{form_open({ request: 'onDownloadFile' }) }}
+                        <input type="hidden" value="{{record.file_jpg.id}}" name="id">
+                        <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> JPG</button>
+                        {{ form_close() }}
+
                         {% endif %}
                         {% if record.file_png %}
-                        <a href="{{ ''| page }}?{{queries}}&download={{record.file_png.id}}&file_name={{record.file_png.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  PNG</a> &nbsp;
+                        {{form_open({ request: 'onDownloadFile' }) }}
+                        <input type="hidden" value="{{record.file_png.id}}" name="id">
+                        <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> PNG</button>
+                        {{ form_close() }}
                         {% endif %}
                         {% if record.file_eps %}
-                        <a href="{{ ''| page }}?{{queries}}&download={{record.file_eps.id}}&file_name={{record.file_eps.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  SVG</a>
+                        {{form_open({ request: 'onDownloadFile' }) }}
+                        <input type="hidden" value="{{record.file_eps.id}}" name="id">
+                        <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> SVG</button>
+                        {{ form_close() }}
                         {% endif %}
                     </div>
                 </div>
@@ -158,7 +186,11 @@ function onStart(){
                 <div class="col-xs-12">
                     <div class="text-center">
 
-                        <a href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.file.file_name|replace({' ': '_'})}}" title="{{record.name}}" class="btn btn-primary">Download</a>
+                        {{form_open({ request: 'onDownloadFile' }) }}
+                        <input type="hidden" value="{{record.file.id}}" name="id">
+                        <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> Download</button>
+                        {{ form_close() }}
+
                     </div>
                 </div>
                 {% endif %}
@@ -203,7 +235,11 @@ function onStart(){
                     <div class="date">{{record.date |date('F Y')}}</div>
                     <span class="card_image_container" style="background: url({{record.newsletter_image.path}}) center center no-repeat;" title="{{record.name}}"></span>
                     <span class="card_title" style="min-height: 100px;">{{record.name}}</span>
-                    <br><br><a href="{{ record.file.path }}#{{record.file.file_name}}" target="_blank" title="{{record.name}}" class="btn btn-primary">Download</a>
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file.id}}" name="id">
+                    <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> Download</button>
+                    {{ form_close() }}
+
                 </div>
             </div>
             {% endfor %}
@@ -221,7 +257,11 @@ function onStart(){
 
                     <p>Attachment: {{record.file.file_name}}, {{record.file.size}}</p>
 
-                    <p><a class=" btn btn-primary" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}">Download</a></p>
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file.id}}" name="id">
+                    <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> Download</button>
+                    {{ form_close() }}
+
 
                     {% endif %}
 

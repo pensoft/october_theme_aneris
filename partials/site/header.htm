@@ -90,7 +90,7 @@ description_limit = 0
 
 {% if this.theme.header_image and page_id == 'home' %}
 <div class="container-fluid header_container_background" style="padding: 0!important;">
-    <div style="background: url('{{this.theme.header_image.getPath()}}') no-repeat; background-size: 44%; background-position: top 10vh right 8vw;">
+    <div class="header_container_background_sub" style="background: url('{{this.theme.header_image.getPath()}}') no-repeat; background-size: 44%; background-position: top 10vh right 8vw;">
         <div class="container header-image {{page_id}}">
         <div class="header-image-bar"></div>
         <div class="jumbotron" data-aos="fade-right" >

@@ -212,6 +212,13 @@ ul.pagination{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    .header_container_background_sub{
+        .breakpoint-large-down({
+            background-position: bottom 32vh right!important;
+        });
+
+    }
 }
 
 .header_container_background_inner {
@@ -398,6 +405,9 @@ ul.pagination{
         height: 85px;
         margin: 150px auto 0 auto;
         cursor: pointer;
+        .breakpoint-large-down({
+            margin: 10px auto;
+        });
         &:hover{
             background-size: 55px;
         }
