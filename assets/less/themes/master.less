@@ -871,26 +871,26 @@ footer .align-items-center{
         top: 90px;
         padding-top: 20px;
 
-        .breakpoint-small-down({
+        .breakpoint-large-down({
             width: 100%;
         });
 
         &.left {
-            background: @white-color url(../../assets/images/login.png) no-repeat;
+            background: url(../../assets/images/login.png) no-repeat;
             background-position: center;
             background-size: contain;
             left: 0;
             h1{
                 padding-left: 20%;
             }
-            .breakpoint-small-down({
+            .breakpoint-large-down({
                 display: none;
             });
         }
 
         &.right {
             right: 0;
-            .breakpoint-small-down({
+            .breakpoint-large-down({
                 width: 100%;
             });
         }
@@ -902,7 +902,7 @@ footer .align-items-center{
             width: 80%;
             transform: translate(-50%, -50%);
             text-align: center;
-            .breakpoint-small-down({
+            .breakpoint-large-down({
                 width: 80%;
                 top: 55%!important;
             })
@@ -924,8 +924,7 @@ footer .align-items-center{
 
     .hidden-md{
         display: none;
-        .breakpoint-small-down({
-            background: @white-color;
+        .breakpoint-large-down({
             display: block;
             width: 100vw;
             position: absolute;
@@ -948,8 +947,7 @@ footer .align-items-center{
     }
     .hidden-md{
         display: none;
-        .breakpoint-small-down({
-            background: @white-color;
+        .breakpoint-large-down({
             display: block;
             width: 100vw;
             position: absolute;
