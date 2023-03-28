@@ -4,7 +4,6 @@ title = "News"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
-
 ==
 <?php
 use Pensoft\Articles\Models\Article;
@@ -69,8 +68,7 @@ $this['related'] = $related;
 }
 ?>
 ==
-
-	{% if is_detail_page %}
+{% if is_detail_page %}
 <div class="container" style="max-width: 950px;">
     <div class="some_news_background2"></div>
     <div class="some_news_background"></div>
@@ -132,11 +130,11 @@ $this['related'] = $related;
                             <div class="news-container col-xs-12">
 
                                 <div class="news-title">
-                                    <h3 class="card-title">{{record.title}}</h3>
+                                    <h3 class="card-title" style="margin-top: 0!important;">{{record.title}}</h3>
                                 </div>
 
                                 <div class="body">{{ record.content|length > 200 ? record.content|striptags|slice(0, 200)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
-                                <span class="read_more type_button">Read more</span>
+                                <span class="read_more">Read more</span>
                             </div>
                         </a>
                     </div>
@@ -156,4 +154,3 @@ $this['related'] = $related;
 
         </div>
 	{% endif %}
-

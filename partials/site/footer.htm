@@ -40,12 +40,12 @@ function onStart(){
 ==
 <div class="container-fluid border-box subscribe-newsletter-background">
     <div class="row container middle-xs between-xs">
-        <div class="col-xs-12 center-xs mb-2 mt-2">COORDINATED BY</div>
+        <div class="col-xs-12 center-xs mb-1 mt-2">COORDINATED BY</div>
         <div class="col-xs-12 center-xs coordinating_partners">
             {% for c in coordinating_partners %}
-                <div class="partner_logo"><a href="{{c.instituion_url}}" target="_blank">
+                <a href="{{c.instituion_url}}" target="_blank">
                     <img alt="{{ c.instituion }}" src="{{c.cover.thumb(auto,118,{'mode':'crop'})}}"></a>
-                </div>
+                
             {% endfor %}
         </div>
     </div>

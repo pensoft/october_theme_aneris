@@ -434,8 +434,8 @@ function appendSignOut() {
 function appendSearchAndSocialMedia(){
 	var liSearch = '<li class="nav-item search_field"><a href=\"javascript: void(0);\" onclick=\"showSearchForm();\"></a></li>';
 	var liSocial = '<li class="nav-item social">' +
-        '<a href=\"https://www.linkedin.com/company/anerisproject/\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a>' +
-        '<a href=\"https://www.linkedin.com/company/soils-for-europe\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a>' +
+        '<a href=\"https://twitter.com/ANERISproject\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a>' +
+        '<a href=\"https://www.linkedin.com/company/anerisproject/\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a>' +
         '<a href=\"https://www.instagram.com/aneris_project/" target=\"_blank\" class=\"pr p-instagram big\" target=\"_blank\"></a></li>';
 	var menu = $('#menuToggle');
 	menu.find('>ul').append(liSearch).append(liSocial);
@@ -529,13 +529,10 @@ function onMapCustomPartners(code) {
 
 
 function handleCustomSVGMapMouseMove(event) {
-    var countryCode = $(event.target).attr('country_code');
-    var title = $(event.target).attr('title');
+    var countryCode = $(event.target).parent().parent().attr('country_code');
+    var title = $(event.target).parent().parent().attr('title');
     var tooltip = document.getElementById("tooltip");
-    if (!countryCode) {
-        countryCode = $(event.target).parent().attr('country_code');
-        title = $(event.target).parent().attr('title');
-    }
+    
 
     switch (countryCode) {
         case "AF":
