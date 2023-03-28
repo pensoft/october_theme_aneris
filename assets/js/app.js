@@ -285,7 +285,7 @@ $(document).ready(function() {
     });
 
 
-    $('body').on('click', '#mycomponentpartners .accordion-toggle', function () {
+    $('body').on('click', '#mycomponentpartners .accordion-toggle, .accordion-insider-members-list .accordion-toggle', function () {
         if ($(this).next(".accordion-content").is(':visible')) {
             $(this).next(".accordion-content").slideUp(300);
             $(this).children(".plusminus").html('<span>Members</span><span class="plus"></span>');
@@ -532,7 +532,7 @@ function handleCustomSVGMapMouseMove(event) {
     var countryCode = $(event.target).parent().parent().attr('country_code');
     var title = $(event.target).parent().parent().attr('title');
     var tooltip = document.getElementById("tooltip");
-    
+
 
     switch (countryCode) {
         case "AF":
