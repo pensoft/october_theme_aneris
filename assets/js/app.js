@@ -438,7 +438,8 @@ function appendSearchAndSocialMedia(){
 	var liSocial = '<li class="nav-item social">' +
         '<a href=\"https://twitter.com/ANERISproject\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a>' +
         '<a href=\"https://www.linkedin.com/company/anerisproject/\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a>' +
-        '<a href=\"https://www.instagram.com/aneris_project/" target=\"_blank\" class=\"pr p-instagram big\" target=\"_blank\"></a></li>';
+        '<a href=\"https://www.instagram.com/aneris_project/" target=\"_blank\" class=\"pr p-instagram big\" target=\"_blank\"></a>' +
+        '<a href=\"https://www.youtube.com/@ANERISProject/" target=\"_blank\" class=\"pr p-youtube big\" target=\"_blank\"></a></li>';
 	var menu = $('#menuToggle');
 	menu.find('>ul').append(liSearch).append(liSocial);
 }
@@ -454,7 +455,6 @@ function redirectAndRefresh(url){
 function isBreakpointLarge() {
     return window.innerWidth <= 991;
 }
-
 
 function showSearchForm(){
     // if ($(".search").is(':visible')) {

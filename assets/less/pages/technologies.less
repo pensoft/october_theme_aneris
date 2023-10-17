@@ -1,0 +1,247 @@
+.technology-row{
+    .breakpoint-small-down({
+    padding-top: 100px;
+    });
+}
+
+.record-item {
+    position: relative;
+    margin-bottom: 160px !important;
+}
+
+.item-image {
+    width: 306px;
+    height: 260px;
+}
+
+.technologies-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.item-header {
+    background: url("../../assets/images/MARGENODAT.svg") center no-repeat;
+    background-size: cover;
+    width: 173px;
+    height: 149px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    h1{
+        margin-bottom: 0 !important;
+        font: normal normal bold 18px/28px Inter V;
+    }
+    
+}
+
+.record-item:nth-child(1){
+    .item-header {
+        background: url("../../assets/images/ATIRES.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 306px;
+            height: 240px;
+        }
+    }
+}
+
+.record-item:nth-child(2){
+    .item-header {
+        background: url("../../assets/images/MARGENODAT.svg") center no-repeat;
+    }
+    
+    .item-image{
+        img{
+            width: 306px;
+            height: 240px;
+        }
+    }
+}
+
+.record-item:nth-child(3){
+    .item-header {
+        background: url("../../assets/images/SLIM2.0.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 288px;
+            height: 238px;
+        }
+    }
+}
+
+.record-item:nth-child(4){
+    .item-header {
+        background: url("../../assets/images/EMUAS.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 288px;
+            height: 220px;
+        }
+    }
+}
+
+.record-item:nth-child(5){
+    .item-header {
+        background: url("../../assets/images/AIES-ZOO.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 288px;
+            height: 202px;
+        }
+    }
+}
+.record-item:nth-child(6){
+    .item-header {
+        background: url("../../assets/images/AIES-PHY.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 288px;
+            height: 204px;
+        }
+    }
+}
+.record-item:nth-child(7){
+    .item-header {
+        background: url("../../assets/images/AIES-MAC.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 288px;
+            height: 214px;
+        }
+    }
+}
+.record-item:nth-child(8){
+    .item-header {
+        background: url("../../assets/images/ATIRES.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 288px;
+            height: 242px;
+        }
+    }
+}
+
+.record-item:nth-child(9){
+    .item-header {
+        background: url("../../assets/images/AMAMER.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 306px;
+            height: 234px;
+        }
+    }
+}
+
+.record-item:nth-child(10){
+    .item-header {
+        background: url("../../assets/images/AWIMAR.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 306px;
+            height: 244px;
+        }
+    }
+}
+
+.record-item:nth-child(11){
+    .item-header {
+        background: url("../../assets/images/AMOVALIH.svg") center no-repeat;
+    }
+    .item-image{
+        img{
+            width: 282px;
+            height: 226px;
+        }
+    }
+}
+
+// .btn-technology{
+//     width: 160px !important;
+// }
+
+.btn-technology::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 16px;
+    background: url("../../assets/images/technology-btn-arrow.svg") center no-repeat;
+    margin-left: 15px;
+    vertical-align: middle; 
+}
+
+
+// Content section
+.technology-content {
+
+    font-size: 19px;
+
+    .technology-header-main {
+        letter-spacing: 0px;
+        font: normal normal bold 27px Quicksand;
+        color: #1B1B2D;
+    }
+
+    .technology-header-sub {
+        font: normal normal bold 24px Quicksand;
+        letter-spacing: 0px;
+        color: #3FC0C8;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    
+        li {
+            position: relative;
+            padding-left: 1.5em;
+    
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0.1em;
+                top: 0.5em;
+                width: 0.5em;
+                height: 0.5em;
+                background-color: #3FC0C8;
+                border-radius: 50%;
+            }
+        }
+    }
+    
+    .contact-info{
+        font-size:23px;
+    }
+
+    .technology-partners {
+        .partner-col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .partner-img {
+                max-width: 160px;
+                max-height: 100px;
+                width: auto;
+                height: auto;
+            }
+        }
+    }
+    
+}
+

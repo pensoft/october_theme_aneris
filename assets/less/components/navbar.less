@@ -502,6 +502,13 @@ nav .pr.p-search.large.search-btn{
             }
 
         }
+        &.p-youtube{
+            &:before{
+                .breakpoint-large-down({
+                    color: @link-color;
+                });
+            }
+        }
         &.p-linkedin{
             background: url('../../assets/images/linkedin-menu.svg') center no-repeat;
             background-size: 16px;
