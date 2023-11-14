@@ -149,11 +149,10 @@ $this['related'] = $related;
                 No news
                 {% endfor %}
             </div>
-            {% if records.count > 15 %}
+            
             <div class="row container">
                 {{ records.render|raw }}
             </div>
-            {% endif %}
 
         </div>
 	{% endif %}
