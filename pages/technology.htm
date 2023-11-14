@@ -1,6 +1,6 @@
 url = "/technology/:tag"
 layout = "default"
-title = "technologies"
+title = "Technologies"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
@@ -8,14 +8,13 @@ robot_follow = "follow"
 [siteSearchInclude]
 
 [Technology]
-
+tag = "{{ :tag }}"
 ==
-
 {% component 'siteSearchInclude' %}
 
 <div class="container">
    {% component 'Technology' %}
    <div class="container align-center text-center">
-      <a href="/technologies"> <- Back to technologies</a>
+     <a href="/technologies"> <- <strong>Back to technologies</strong></a>
    </div>
 </div>
