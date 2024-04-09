@@ -297,6 +297,18 @@ $(document).ready(function() {
         }
     });
 
+    
+
+    $('body').on('click', '.messages .accordion-toggle', function () {
+        if ($(this).next(".accordion-content").is(':visible')) {
+            $(this).next(".accordion-content").slideUp(300);
+            $(this).children(".plusminus").html('<span class="plus"></span>');
+        } else {
+            $(this).next(".accordion-content").slideDown(300);
+            $(this).children(".plusminus").html('<span class="minus"></span>');
+        }
+    });
+
 });
 
 function showHideWP(target){
