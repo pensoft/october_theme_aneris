@@ -105,7 +105,8 @@ function onStart(){
 
 
 	<div class="container mt-4">
-	<div class="row between-xs">
+        
+	<div class="row between-xs d-flex align-items-center">
 		<div class="col-lg-7 col-xs-12 upcoming_events_container">
             <h1 class="base_heading"><a href="{{'events'|page}}"><span></span>Upcoming Events<span></span></a></h1>
             {% for event in entries %}
@@ -127,30 +128,36 @@ function onStart(){
 		</div>
 
         <div class="col-lg-5 col-xs-12 social_media_conainer">
-            <h1 class="base_heading">Follow ANERIS</h1>
-
-            <div class="row subscribe-items start-md center-xs">
-                {% if this.theme.twitter %}
-                <a href="{{this.theme.twitter_url}}" target="_blank" class="btn p-primary pr p-twitter medium"></a>
-                {% endif %}
-                {% if this.theme.facebook %}
-                <a href="{{this.theme.facebook_url}}" target="_blank" class="btn pr p-primary p-facebook medium"></a>
-                {% endif %}
-                {% if this.theme.linkedin %}
-                <a href="{{this.theme.linkedin_url}}" target="_blank" class="btn pr p-primary p-linkedin medium"></a>
-                {% endif %}
-                {% if this.theme.youtube %}
-                <a href="{{this.theme.youtube_url}}" target="_blank" class="btn pr p-primary p-youtube medium"></a>
-                {% endif %}
-                {% if this.theme.instagram %}
-                <a href="{{this.theme.instagram_url}}" target="_blank" class="btn pr p-primary p-instagram medium"></a>
-                {% endif %}
-                {% if this.theme.researchgate %}
-                <a href="{{this.theme.researchgate_url}}" target="_blank" class="btn pr p-primary p-researchgate medium"></a>
-                {% endif %}
+            <div class="social-media">
+                <div class="row social-media-box">
+                    <div class="col-xs-12">
+                        <h1>Follow ANERIS</h1>
+                        <div class="row subscribe-items">
+                            {% if this.theme.twitter %}
+                            <a href="{{this.theme.twitter_url}}" target="_blank" class="btn p-primary pr p-twitter middle"></a>
+                            {% endif %}
+                            {% if this.theme.facebook %}
+                            <a href="{{this.theme.facebook_url}}" target="_blank" class="btn pr p-primary p-facebook middle"></a>
+                            {% endif %}
+                            {% if this.theme.linkedin %}
+                            <a href="{{this.theme.linkedin_url}}" target="_blank" class="btn pr p-primary p-linkedin middle"></a>
+                            {% endif %}
+                            {% if this.theme.youtube %}
+                            <a href="{{this.theme.youtube_url}}" target="_blank" class="btn pr p-primary p-youtube middle"></a>
+                            {% endif %}
+                            {% if this.theme.instagram %}
+                            <a href="{{this.theme.instagram_url}}" target="_blank" class="btn pr p-primary p-instagram middle"></a>
+                            {% endif %}
+                            {% if this.theme.researchgate %}
+                            <a href="{{this.theme.researchgate_url}}" target="_blank" class="btn pr p-primary p-researchgate middle"></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
+            <div class="col-xs-12 items-center d-flex justify-content-center mt-1">
+                <a href="#" class="btn btn-primary btn-zendo"></a>
+            </div>
         </div>
 
 	</div>
