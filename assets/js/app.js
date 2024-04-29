@@ -217,7 +217,11 @@ $(document).ready(function() {
         });
     });
 
-
+    // News category tabs
+    $('.category-tabs-container a').click(function() {
+        $('.category-tabs-container a').removeClass('active');
+        $(this).addClass('active');
+    });
 
     // bootstrap 3 breakpoints
     const breakpoint = {

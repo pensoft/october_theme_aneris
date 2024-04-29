@@ -8,6 +8,7 @@ robot_follow = "follow"
 [gallery]
 ==
 <?php
+use Pensoft\Articles\Models\Category;
 use Pensoft\Articles\Models\Article;
 
 function urlencode($string){
@@ -15,7 +16,36 @@ function urlencode($string){
 }
 function onStart()
 {
-$this['records'] = Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->orderBy('published_at', 'DESC')->paginate(15, ['*'], 'p');
+    $this['article'] = Pensoft\Articles\Models\Article::where('slug', $this->param('id'))->first();
+    $this['categories'] = Category::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
+	
+    $categoryId = input('categoryId', 'all');
+
+    if ($categoryId !== 'all' && !is_numeric($categoryId)) {
+        return redirect('news');
+    }
+	
+    $this['categoryId'] = $categoryId;
+
+    if ($categoryId === 'all') {
+        $records = Article::news()->where('published_at', '<=', 'now')
+                                  ->where('published', 'true')
+                                  ->orderBy('published_at', 'DESC')
+                                  ->paginate(12);
+    } else {
+        $records = Article::news()->whereHas('categories', function ($query) use ($categoryId) {
+                     $query->where('id', $categoryId);
+                 })->where('published_at', '<=', 'now')
+                   ->where('published', 'true')
+                   ->orderBy('published_at', 'DESC')
+                   ->paginate(12);
+    }
+
+    if ($categoryId !== 'all') {
+        $records->appends(['categoryId' => $categoryId]);
+    }
+
+    $this['records'] = $records;
 
     $this['article'] = Pensoft\Articles\Models\Article::where('slug', $this->param('id'))->where('published', 'true')->first();
 $this['is_detail_page'] = $this['article'] ? true : false;
@@ -136,36 +166,20 @@ $this['related'] = $related;
 </div>
 	{% else %}
         <div class="container">
-            <div class="row">
-                {% for record in records %}
-                {% spaceless %}
-                <div class="col-xs-12 news-item">
-                    <div class="row news_column">
-                        <div class="text-published">{{record.published_at | date('d F Y') }}</div>
-                        <a href="{{'news'|page}}/{{record.slug}}">
-                            {% if record.cover %}
-                            <div class="news-image col-xs-12 center-xs">
-                                <img class="news-img-top" src="{{record.cover.getThumb(288, 201, {'mode': 'crop'})}}">
-                            </div>
-                            {% endif %}
-                            <div class="news-container col-xs-12">
 
-                                <div class="news-title">
-                                    <h3 class="card-title" style="margin-top: 0!important;">{{record.title}}</h3>
-                                </div>
-
-                                <div class="body">{{ record.content|length > 200 ? record.content|striptags|slice(0, 200)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
-                                <span class="read_more">Read more</span>
-                            </div>
-                        </a>
-                    </div>
-
+            <div class="category-tabs-container mb-2">
+                {% if categories.count > 0 %}
+                <div class="row category-tabs" id="category-tabs">
+                    <a href="{{ 'news'|page }}" class="{{ 'all' == categoryId ? 'active' : '' }}">All News</a>
+                    {% for category in categories %}
+                    <a href="{{ 'news'|page }}?categoryId={{ category.id }}" class="{{ category.id == categoryId ? 'active' : '' }}">{{ category.name }}</a>
+                    {% endfor %}
                 </div>
+                {% endif %}
+            </div>
 
-                {% endspaceless %}
-                {% else %}
-                No news
-                {% endfor %}
+            <div class="newslist-records" id="newslist-records">
+                {% partial 'components/newslist-records' %}
             </div>
             
             <div class="row container">

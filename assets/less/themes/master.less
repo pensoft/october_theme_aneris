@@ -1209,6 +1209,53 @@ now override the 3.3 new styles for modern browsers & apply opacity
 }
 
 
+/* news categories */
+.category-tabs-container{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  
+    a{
+        position: relative;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 5px 20px;
+        color: #00b6c4;
+        border: 2px solid #1b1b2d;
+        background-color: #1b1b2d;
+        border-radius: 20px;
+        margin-bottom: 16px;
+
+        &.active, &:hover{
+            background-color: @white-color;
+            border: 2px solid #00b6c4;
+
+        }
+  
+        &:not(:last-child){
+            margin-right: 20px;
+        }
+  
+        .breakpoint-large-down({
+            margin-bottom: 18px;
+        });
+  
+    }
+    .category-tabs{
+        .breakpoint-large-down({
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        });            
+    }
+    .breakpoint-large-down({
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    });     
+  }
+
 
 
 /* carousel */
