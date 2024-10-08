@@ -131,7 +131,7 @@ $(document).ready(function() {
 
     $('<div class="mark"></div>').insertAfter($('.group-holder input'));
 
-    $('.events .tabs, .partners .tabs').each(function(){
+    $('.events .tabs, .partners .tabs, .media-center .tabs').each(function(){
         // For each set of tabs, we want to keep track of
         // which tab is active and its associated content
         var $active, $content, $links = $(this).find('a');

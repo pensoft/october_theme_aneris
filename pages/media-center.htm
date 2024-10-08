@@ -51,9 +51,9 @@ function onDownloadFile(){
         {% if logos.count() %}
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
-                <a href="#logo" title="Logo">
-                    <div class="card_border"><span class="card_image_container" style="background: url({{'logo.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/logo" title="Logo"></span></div>
-                    <span class="media_label">Logo</span>
+                <a href="#brand-kit" title="Brand kit">
+                    <div class="card_border"><span class="card_image_container" style="background: url({{'logo.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/brand-kit" title="Brand kit"></span></div>
+                    <span class="media_label">Brand kit</span>
                 </a>
             </div>
         </div>
@@ -132,7 +132,7 @@ function onDownloadFile(){
     </div>
         <!--tabs content	-->
         {% if logos.count() %}
-        <div class="row card-container-row start-xs logo" id="logo" style="display: none;">
+        <div class="row card-container-row start-xs logo" id="brand-kit" style="display: none;">
             {% for record in logos %}
             {# Use spaceless tag to remove spaces inside the A tag. #}
             {% spaceless %}
@@ -160,6 +160,10 @@ function onDownloadFile(){
                         <input type="hidden" value="{{record.file_eps.id}}" name="id">
                         <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> SVG</button>
                         {{ form_close() }}
+                        {% endif %}
+                        
+                        {% if record.file_pdf %}
+                        <a href="{{record.file_pdf.path}}" target="_blank" class="btn btn-primary"><i class="pr p-download"></i> PDF</a>
                         {% endif %}
                     </div>
                 </div>
