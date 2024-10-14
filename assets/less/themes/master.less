@@ -231,6 +231,19 @@ ul.pagination{
     position: absolute;
 }
 
+.advisory-board .header_container_background_inner {
+    /* The image used */
+    background-image: url("../../assets/images/partners_all_advisory.png");
+    /* Set a specific height */
+    min-height: 100vh;
+    /* Create the parallax scrolling effect */
+    //background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
 .header-image{
     overflow: hidden;
     position: relative;
@@ -1214,7 +1227,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
     display: flex;
     justify-content: start;
     align-items: center;
-  
+
     a{
         position: relative;
         font-size: 16px;
@@ -1231,29 +1244,29 @@ now override the 3.3 new styles for modern browsers & apply opacity
             border: 2px solid #00b6c4;
 
         }
-  
+
         &:not(:last-child){
             margin-right: 20px;
         }
-  
+
         .breakpoint-large-down({
             margin-bottom: 18px;
         });
-  
+
     }
     .category-tabs{
         .breakpoint-large-down({
             display: flex;
             align-items: center;
             justify-content: center;
-        });            
+        });
     }
     .breakpoint-large-down({
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    });     
+    });
   }
 
 
