@@ -1,22 +1,17 @@
-title = "Advisory board"
-layout = "default"
 url = "/advisory-board"
+layout = "default"
+title = "Advisory board"
 
 [siteSearchInclude]
-
 ==
-
 <?php
 use Pensoft\Cardprofiles\Models\Profiles;
 
 function onStart(){
 	$this['advisory_board'] = Profiles::where('category_id',  3)->get();
 }
-
-
 ?>
 ==
-
 {% component 'siteSearchInclude' %}
 
 <div class="container-fluid banner adv-board pt-5">
@@ -34,7 +29,7 @@ function onStart(){
                                     <!--                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,145,{'mode':'crop'})}}">-->
                                     <img alt="{{ profile.names }}" src="{{profile.avatar|crop_image}}">
                                     {% else %}
-                                    <img alt="{{ profile.names }}" src="{{ 'avatar.svg'|media }}" width="265" height="205" class="no-image">
+                                    <img alt="{{ profile.names }}" src="{{ 'CMS_icons_avatar_ab.svg'|media }}" width="265" height="205" class="no-image">
                                     {% endif %}
                                 </div>
                                 <div class="col-xs-12 coordinator_info">

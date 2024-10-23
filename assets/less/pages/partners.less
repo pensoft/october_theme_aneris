@@ -381,24 +381,27 @@ g:has(.fill_default){
 
 
 .advisory-board{
-    a{
-        font-size: 22px;
-        font-weight: bold;
-        color: #102441;
-        margin-bottom: 20px;
-    }
+    
     .contact_info {
         display: flex;
         flex-direction: column;
         text-align: center;
         margin-top: 50px;
+
+        a{
+            font-size: 22px;
+            font-weight: bold;
+            color: #102441;
+            margin-bottom: 20px;
+        }
+
         &:nth-of-type(odd){
             img{
                 width: 265px;
                 height: 205px;
                 border-radius: 250px 350px 100px 200px;
                 object-fit: cover;
-                object-position: top;
+                object-position: center;
                 border: 2px solid #D6E3EA;
             }
         }
@@ -408,7 +411,7 @@ g:has(.fill_default){
                 height: 205px;
                 border-radius: 350px 250px 200px 100px;
                 object-fit: cover;
-                object-position: top;
+                object-position: center;
                 border: 2px solid #D6E3EA;
             }
         }
