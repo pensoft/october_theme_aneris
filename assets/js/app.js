@@ -301,7 +301,7 @@ $(document).ready(function() {
         }
     });
 
-    
+
 
     $('body').on('click', '.messages .accordion-toggle', function () {
         if ($(this).next(".accordion-content").is(':visible')) {
@@ -335,7 +335,7 @@ function showHideWP(target){
 function expandReadMore(el){
     var $el, $ps, $up, totalHeight;
 
-    totalHeight = 115;
+    totalHeight = 100;
 
     $el = $(el) // read-more link
 
@@ -353,7 +353,7 @@ function expandReadMore(el){
         $up.addClass('changed');
 
         $el.css({
-            top: totalHeight - 120
+            top: totalHeight - 100
         });
         // $el.html('<a class="revert" href="" onclick="revertChanges(this);">Read less</a>');
 
@@ -374,7 +374,7 @@ function expandReadMore(el){
         $up.removeClass('changed');
 
         $el.css({
-            top: 53
+            top: 17
         });
         // $el.html('<a class="revert" href="" onclick="revertChanges(this);">Read less</a>');
 

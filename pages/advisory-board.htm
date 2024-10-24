@@ -22,18 +22,32 @@ function onStart(){
                 <div class="advisory-accordion-content" id="insider-members">
                     <div class="row top-xs">
                         {% for profile in advisory_board %}
-                        <div class="col-md-3 col-xs-12">
-                            <div class="contact_info row">
-                                <div class="col-xs-12 coordinator_image">
+                        <div class="col-md-6 col-xs-12 contact_info">
+                            <div class="row">
+                                <div class="col-md-5 col-xs-12 coordinator_image">
                                     {% if profile.avatar %}
                                     <!--                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,145,{'mode':'crop'})}}">-->
-                                    <img alt="{{ profile.names }}" src="{{profile.avatar|crop_image}}">
+                                    <img alt="{{ profile.names }}" src="{{profile.avatar.getThumb(210,190,{'mode':'crop'})}}">
                                     {% else %}
-                                    <img alt="{{ profile.names }}" src="{{ 'CMS_icons_avatar_ab.svg'|media }}" width="265" height="205" class="no-image">
+                                    <img alt="{{ profile.names }}" src="{{ 'CMS_icons_avatar_ab.svg'|media }}" width="210" height="190" class="no-image">
                                     {% endif %}
                                 </div>
+                                <div class="col-md-7 col-xs-12 profile-item">
+                                    <div class="row middle-xs between-xs">
+                                        <div class="col-xs"><h3>{{ profile.names }}</h3></div>
+                                        {% if profile.linkedin_url %}<div class="col-xs-2 end-xs contact_linkedin"><a href="{{ profile.linkedin_url }}" target="_blank"></a></div>{% endif %}
+
+                                    </div>
+
+                                    <p class="contact_affiliation">
+                                        {% if profile.address %}{{ profile.address }}{% endif %}
+                                        {% if profile.position %} | {{ profile.position }}{% endif %}
+                                    </p>
+                                    {% if profile.email %}<p class="contact_mail"><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></p>{% endif %}
+
+                                </div>
                                 <div class="col-xs-12 coordinator_info">
-                                    <h3>{{ profile.names }}</h3>
+
                                     <div class="body"><p class="read-more" onclick="expandReadMore(this);">Read more</p>{{ profile.content|raw }}</div>
                                 </div>
                             </div>
