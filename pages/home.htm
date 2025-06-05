@@ -85,7 +85,7 @@ function onStart(){
                                 </div>
                                 <div class="news-container">
                                     <div class="news-title">
-                                        <h3 class="card-title">{{highlight.title}}</h3>
+                                        <h3 class="card-title">{{ highlight.title|length > 50 ? highlight.title|slice(0, 50)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
                                     </div>
                                     <div class="read_more">Read more</div>
                                 </div>

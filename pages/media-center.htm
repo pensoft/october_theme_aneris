@@ -21,7 +21,7 @@ use System\Models\File;
 function onStart(){
 	$this['logos'] =  MediaLogos::get();
 	$this['flyers'] =  Flyers::get();
-	$this['newsletters'] =  Newsletters::get();
+	$this['newsletters'] =  Newsletters::orderBy('date', 'desc')->get();
 	$this['presentations'] =  Presentations::get();
 	$this['pressreleases'] =  Pressreleases::get();
 	$this['videos'] =  Videos::get();
@@ -241,10 +241,23 @@ function onDownloadFile(){
                     <div class="date">{{record.date |date('F Y')}}</div>
                     <span class="card_image_container" style="background: url({{record.newsletter_image.path}}) center center no-repeat;" title="{{record.name}}"></span>
                     <span class="card_title" style="min-height: 100px;">{{record.name}}</span>
+                    <div class="links">
+                    {% if record.url %}
+                        <a  title="{{record.name}}" class="btn btn-primary mb-1" href="{{record.url}}" target="_blank">Read the newsletter</a>
+                 
+                    {% endif %}
+
+                    &nbsp;
+
+                    {% if record.file %}
                     {{form_open({ request: 'onDownloadFile' }) }}
                     <input type="hidden" value="{{record.file.id}}" name="id">
                     <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> Download</button>
                     {{ form_close() }}
+                    {% endif %}
+                </div>
+
+                    
 
                 </div>
             </div>
