@@ -24,6 +24,7 @@ function onStart(){
 	$this['newsletters'] =  Newsletters::orderBy('date', 'desc')->get();
 	$this['presentations'] =  Presentations::get();
 	$this['pressreleases'] =  Pressreleases::get();
+	$this['graphics'] =  Graphic::get();
 	$this['videos'] =  Videos::get();
 }
 
@@ -52,7 +53,7 @@ function onDownloadFile(){
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
                 <a href="#brand-kit" title="Brand kit">
-                    <div class="card_border"><span class="card_image_container" style="background: url({{'logo.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/brand-kit" title="Brand kit"></span></div>
+                    <div class="card_border"><span class="card_image_container" style="background: url({{'logo.svg'|media}}) center center no-repeat;" title="Brand kit"></span></div>
                     <span class="media_label">Brand kit</span>
                 </a>
             </div>
@@ -63,20 +64,8 @@ function onDownloadFile(){
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
                 <a href="#promotional-materials" title="Promotional materials">
-                    <div class="card_border"><span class="card_image_container" style="background: url({{'promotional-materials.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/promotional-materials" title="Promotional materials"></span></div>
+                    <div class="card_border"><span class="card_image_container" style="background: url({{'promotional-materials.svg'|media}}) center center no-repeat;"  title="Promotional materials"></span></div>
                     <span class="media_label">Promotional materials</span>
-                </a>
-            </div>
-        </div>
-        {% endif %}
-
-<!--        posters-->
-        {% if graphics.count() %}
-        <div class="col-md col-sm-6 col-xs-12">
-            <div class="card-container text-center">
-                <a href="#poster" title="Poster">
-                    <div class="card_border"><span class="card_image_container" style="background: url({{'poster.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/poster" title="Poster"></span></div>
-                    <span class="media_label">Poster</span>
                 </a>
             </div>
         </div>
@@ -86,7 +75,7 @@ function onDownloadFile(){
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
                 <a href="#press-releases" title="Press releases">
-                    <span class="card_image_container" style="background: url({{'press-releases.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/press-releases" title="Press releases"></span>
+                    <span class="card_image_container" style="background: url({{'press-releases.svg'|media}}) center center no-repeat;"  title="Press releases"></span>
                     <span class="media_label">Press releases</span>
                 </a>
             </div>
@@ -96,7 +85,7 @@ function onDownloadFile(){
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
                 <a href="#newsletters" title="Newsletter">
-                    <span class="card_image_container" style="background: url({{'newsletter.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/newsletters" title="Newsletter"></span>
+                    <span class="card_image_container" style="background: url({{'newsletter.svg'|media}}) center center no-repeat;" title="Newsletter"></span>
                     <span class="media_label">Newsletter</span>
                 </a>
             </div>
@@ -108,7 +97,7 @@ function onDownloadFile(){
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
                 <a href="#videos" title="Videos">
-                    <div class="card_border"><span class="card_image_container" style="background: url({{'videos.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/videos" title="Videos"></span></div>
+                    <div class="card_border"><span class="card_image_container" style="background: url({{'videos.svg'|media}}) center center no-repeat;" title="Videos"></span></div>
                     <span class="media_label">Videos</span>
                 </a>
             </div>
@@ -121,8 +110,20 @@ function onDownloadFile(){
         <div class="col-md col-sm-6 col-xs-12">
             <div class="card-container text-center">
                 <a href="#others" title="Others">
-                    <span class="card_image_container" style="background: url({{'other.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/others" title="Others"></span>
+                    <span class="card_image_container" style="background: url({{'other.svg'|media}}) center center no-repeat;"  title="Others"></span>
                     <span class="media_label">Others</span>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if graphics.count() %}
+        <div class="col-md col-sm-6 col-xs-12">
+            <div class="card-container text-center">
+                <a href="#graphics" title="Infographics">
+                    <span class="card_image_container" style="background: url({{'other.svg'|media}}) center center no-repeat;" title="Infographics"></span>
+                    <span class="media_label">Infographics</span>
                 </a>
             </div>
         </div>
@@ -161,7 +162,7 @@ function onDownloadFile(){
                         <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> SVG</button>
                         {{ form_close() }}
                         {% endif %}
-                        
+
                         {% if record.file_pdf %}
                         <a href="{{record.file_pdf.path}}" target="_blank" class="btn btn-primary"><i class="pr p-download"></i> PDF</a>
                         {% endif %}
@@ -244,7 +245,7 @@ function onDownloadFile(){
                     <div class="links">
                     {% if record.url %}
                         <a  title="{{record.name}}" class="btn btn-primary mb-1" href="{{record.url}}" target="_blank">Read the newsletter</a>
-                 
+
                     {% endif %}
 
                     &nbsp;
@@ -257,7 +258,7 @@ function onDownloadFile(){
                     {% endif %}
                 </div>
 
-                    
+
 
                 </div>
             </div>
@@ -301,5 +302,41 @@ function onDownloadFile(){
             {% endfor %}
         </div>
         {% endif %}
+
+        {% if graphics.count() %}
+        <div class="row card-container-row start-xs flyer" id="graphics" style="display: none;">
+            {% for record in graphics %}
+            {# Use spaceless tag to remove spaces inside the A tag. #}
+            {% spaceless %}
+            {% if record.image %}
+            <div class="col-md-4 col-xs-12 center-xs mt-4">
+                <h3><b>{{record.name}}</b></h3>
+                <p class="logo_container"><img src="{{record.image.path}}" title="{{record.name}}"></p>
+
+                {% if record.file %}
+                <div class="col-xs-12">
+                    <div class="text-center">
+
+                        {{form_open({ request: 'onDownloadFile' }) }}
+                        <input type="hidden" value="{{record.file.id}}" name="id">
+                        <button type="submit" class="btn btn-primary" data-attach-loading><i class="pr p-download"></i> Download</button>
+                        {{ form_close() }}
+
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+
+
+            {% endif %}
+
+            {% endspaceless %}
+            {% else %}
+            {{ noRecordsMessage }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
     </div>
 </div>
