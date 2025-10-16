@@ -46,135 +46,169 @@ function onStart(){
 }
 ?>
 ==
-<div class="container-fluid border-box subscribe-newsletter-background">
-    {% if this.page.id != 'technology' %}
-    <div class="row container middle-xs between-xs">
-        <div class="col-xs-12 center-xs mb-1 mt-2">COORDINATED BY</div>
-        <div class="col-xs-12 center-xs coordinating_partners">
-            {% for c in coordinating_partners %}
-                <a href="{{c.instituion_url}}" target="_blank">
-                    <img alt="{{ c.instituion }}" src="{{c.cover.thumb(auto,118,{'mode':'crop'})}}"></a>
-                
-            {% endfor %}
+<footer role="contentinfo">
+    <section class="container-fluid border-box subscribe-newsletter-background" aria-labelledby="partners-heading">
+        {% if this.page.id != 'technology' %}
+        <div class="row container middle-xs between-xs">
+            <div class="col-xs-12 center-xs mb-1 mt-2">
+                <h2 id="coordinating-heading">COORDINATED BY</h2>
+            </div>
+            <div class="col-xs-12 center-xs coordinating_partners">
+                <nav aria-labelledby="coordinating-heading">
+                    {% for c in coordinating_partners %}
+                    <a href="{{c.instituion_url}}" target="_blank" rel="noopener noreferrer" aria-label="{{ c.instituion }} (opens in new window)">
+                        <img alt="{{ c.instituion }} logo" src="{{c.cover.thumb(auto,118,{'mode':'crop'})}}" loading="lazy">
+                    </a>
+                    {% endfor %}
+                </nav>
+            </div>
         </div>
-    </div>
-    <div class="row container middle-xs between-xs">
-        <div class="col-xs-12 center-xs mb-1 mt-2">CONSORTIUM</div>
-        <div class="col-xs-12 center-xs consortium_partners">
-                <div id="slick">
+
+        <div class="row container middle-xs between-xs">
+            <div class="col-xs-12 center-xs mb-1 mt-2">
+                <h2 id="consortium-heading">CONSORTIUM</h2>
+            </div>
+            <div class="col-xs-12 center-xs consortium_partners">
+                <div id="slick" role="region" aria-label="Consortium partners carousel" aria-roledescription="carousel">
                     {% for c in consortium_partners %}
-                    <div class="slide">
-                        <div class="partner_logo"><a href="{{c.instituion_url}}" target="_blank">
-                            <img alt="{{ c.instituion }}" src="{{c.cover.thumb(auto,90,{'mode':'crop'})}}"></a>
+                    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide {{ loop.index }} of {{ loop.length }}">
+                        <div class="partner_logo">
+                            <a href="{{c.instituion_url}}" target="_blank" rel="noopener noreferrer" aria-label="{{ c.instituion }} (opens in new window)">
+                                <img alt="{{ c.instituion }} logo" src="{{c.cover.thumb(auto,90,{'mode':'crop'})}}" loading="lazy">
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-        </div>
-    </div>
-    {% endif %}
-    <div class="row container middle-xs between-xs">
-        <div class="col-xs-12 center-xs mb-2 mt-2">SIGN UP TO OUR NEWSLETTER AND STAY UP TO DATE!</div>
-        <div class="col-xs-12 center-xs"><a href="{{this.theme.subscribe}}" class="btn btn-primary" target="_blank">Subscribe</a> </div>
-    </div>
-</div>
-
-
-<div class="container-fluid border-box dark-background">{% component 'cookieConsent' %}
-    <div class="container">
-        <div class="row top-xs between-xs footer-menu-container">
-            <div class="col-lg-5 col-md-12 col-xs-12 footer-right-border">
-                {% if (footer_funds_flag != null or footer_funds_text != '') %}
-                <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-xs-12">
-                    {% if footer_funds_flag %}
-                    <img class="text mr-0 mr-lg-1" style="height:50px;" src="{{ footer_funds_flag }}"/>
-                    {% endif %}
-                </div>
-                <div class="funding-text col-xs-12">
-                    <span class="align-items-center mt-sm-0 mt-1">
-                        ANERIS receives funding from the European Union’s Horizon Europe research and innovation programme under grant agreement No 101094924. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Commission. Neither the EU nor the EC can be held responsible for them.
-                    </span>
-                </div>
-                {% endif %}
-                <div class="col-xs-12 powered-by-container">
-                    <div class="row middle-xs">
-                        <div class="col-lg-4 col-md-12 col-xs-12 start-md center-xs nowrap">
-                            <a style="flex:0 0 auto; font-size: 18px;" href="/privacy-policy">Privacy Policy</a>
-                        </div>
-                        <div class="col-lg-8 col-md-12 col-xs-12 end-md center-xs">
-                            <div class="powered-by my-1 my-lg-0 px-1 start-md center-xs">
-                                <span>Designed and powered by</span> <a href="https://pensoft.net/" target="_blank">
-                                <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" /></a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
-            <div class="col-lg-7 col-md-12 col-xs-12 ">
-                <div class="row">
-                    <div class="col-xs-12 col-lg-4 col-md-4 start-md center-xs col-sm-6 start-sm mb-1">
-                        <a href="/"><img class="project_footer_logo" src="{{ 'assets/images/ANERIS logo-white.svg'|theme }}" /></a>
-                        <div class="head">Contact</div>
-                        <a href="mailto:project@aneris.eu" target="_blank"><img class="mail_icon" src="{{ 'assets/images/mail.svg'|theme }}"> project@aneris.eu</a>
-                    </div>
-                    <div class="row menu-footer">
-                        <div class="col-xs-12 col-lg-4 col-md-4 start-md col-sm-6">
-                            <div class="head">Links</div>
-                            {% component 'footer_menu1' %}
-                        </div>
-                        <div class="col-xs-12 col-lg-4 col-md-4 start-md col-sm-6">
-                            <div class="head hidden-xs">&nbsp;</div>
-                            {% component 'footer_menu2' %}
-                        </div>
-                        <div class="col-xs-12 col-lg-4 col-md-4 start-md  col-sm-6">
-                            <div class="head hidden-xs">&nbsp;</div>
-                            {% component 'footer_menu3' %}
-                        </div>
-                    </div>
-                </div>
+        </div>
+        {% endif %}
 
-                <div class="row follow-row">
+        <div class="row container middle-xs between-xs">
+            <div class="col-xs-12 center-xs mb-2 mt-2">
+                <p><strong>SIGN UP TO OUR NEWSLETTER AND STAY UP TO DATE!</strong></p>
+            </div>
+            <div class="col-xs-12 center-xs">
+                <a href="{{this.theme.subscribe}}" class="btn btn-primary" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to ANERIS newsletter (opens in new window)">Subscribe</a>
+            </div>
+        </div>
+    </section>
 
-                    <div class="col-lg-10 col-md-10 col-xs-12">
-                        <div class="row">
-                            <div class="head social col-md-5 col-xs-12">Follow ANERIS
-                                <div class="social-networks">
-                                    <div class="icons">
-                                        {% if enable_facebook and facebook_url %}
-                                        <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook big" target="_blank"></a>
-                                        {% endif %}
-                                        {% if enable_twitter and twitter_url %}
-                                        <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter big" target="_blank"></a>
-                                        {% endif %}
-                                        {% if enable_linkedin and linkedin_url %}
-                                        <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin big" target="_blank"></a>
-                                        {% endif %}
-                                        {% if enable_youtube and youtube_url %}
-                                        <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube big" target="_blank" style="font-size: 37px!important;"></a>
-                                        {% endif %}
-                                        {% if enable_instagram and instagram_url %}
-                                        <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram big" target="_blank" style="font-weight: 400 !important; margin-top: 2px; margin-left: 6px"></a>
-                                        {% endif %}
-                                    </div>
+    <section class="container-fluid border-box dark-background">
+        {% component 'cookieConsent' %}
+        <div class="container">
+            <div class="row top-xs between-xs footer-menu-container">
+                <div class="col-lg-5 col-md-12 col-xs-12 footer-right-border">
+                    {% if (footer_funds_flag != null or footer_funds_text != '') %}
+                    <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-xs-12">
+                        {% if footer_funds_flag %}
+                        <img class="text mr-0 mr-lg-1" style="height:50px;" src="{{ footer_funds_flag }}" alt="European Union flag" loading="lazy"/>
+                        {% endif %}
+                    </div>
+                    <div class="funding-text col-xs-12">
+                        <p class="align-items-center mt-sm-0 mt-1">
+                            ANERIS receives funding from the European Union's Horizon Europe research and innovation programme under grant agreement No 101094924. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Commission. Neither the EU nor the EC can be held responsible for them.
+                        </p>
+                    </div>
+                    {% endif %}
+
+                    <div class="col-xs-12 powered-by-container">
+                        <div class="row middle-xs">
+                            <div class="col-lg-4 col-md-12 col-xs-12 start-md center-xs nowrap">
+                                <a style="flex:0 0 auto; font-size: 18px;" href="/privacy-policy">Privacy Policy</a>
+                            </div>
+                            <div class="col-lg-8 col-md-12 col-xs-12 end-md center-xs">
+                                <div class="powered-by my-1 my-lg-0 px-1 start-md center-xs">
+                                    <span>Designed and powered by</span>
+                                    <a href="https://pensoft.net/" target="_blank" rel="noopener noreferrer" aria-label="Pensoft (opens in new window)">
+                                        <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" alt="Pensoft logo" loading="lazy" />
+                                    </a>
                                 </div>
                             </div>
-                            
-                            <div class="col-lg-7 col-md-7 col-xs-12 subscribe-btn">
-                                <a href="https://dashboard.mailerlite.com/forms/375373/83340841528067158/share" target="_blank" class="btn-footer">Subscribe to newsletter</a>
-                            </div>   
-                        </div>                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-md-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-4 col-md-4 start-md center-xs col-sm-6 start-sm mb-1">
+                            <a href="/" aria-label="ANERIS Project - Go to homepage">
+                                <img class="project_footer_logo" src="{{ 'assets/images/ANERIS logo-white.svg'|theme }}" alt="ANERIS Project logo" loading="lazy" />
+                            </a>
+                            <h3 class="head">Contact</h3>
+                            <a href="mailto:project@aneris.eu" aria-label="Email ANERIS at project@aneris.eu">
+                                <img class="mail_icon" src="{{ 'assets/images/mail.svg'|theme }}" alt="" aria-hidden="true"> project@aneris.eu
+                            </a>
+                        </div>
+
+                        <nav class="row menu-footer" aria-label="Footer navigation">
+                            <div class="col-xs-12 col-lg-4 col-md-4 start-md col-sm-6">
+                                <h3 class="head">Links</h3>
+                                {% component 'footer_menu1' %}
+                            </div>
+                            <div class="col-xs-12 col-lg-4 col-md-4 start-md col-sm-6">
+                                <h3 class="head sr-only">Links continued</h3>
+                                <div class="head hidden-xs" aria-hidden="true">&nbsp;</div>
+                                {% component 'footer_menu2' %}
+                            </div>
+                            <div class="col-xs-12 col-lg-4 col-md-4 start-md col-sm-6">
+                                <h3 class="head sr-only">Links continued</h3>
+                                <div class="head hidden-xs" aria-hidden="true">&nbsp;</div>
+                                {% component 'footer_menu3' %}
+                            </div>
+                        </nav>
                     </div>
 
+                    <div class="row follow-row">
+                        <div class="col-lg-10 col-md-10 col-xs-12">
+                            <div class="row">
+                                <div class="head social col-md-5 col-xs-12">
+                                    <h3>Follow ANERIS</h3>
+                                    <nav class="social-networks" aria-label="Social media links">
+                                        <div class="icons">
+                                            {% if enable_facebook and facebook_url %}
+                                            <a href="{{facebook_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-facebook big" aria-label="Follow ANERIS on Facebook (opens in new window)">
+                                                <span class="sr-only">Facebook</span>
+                                            </a>
+                                            {% endif %}
+                                            {% if enable_twitter and twitter_url %}
+                                            <a href="{{twitter_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-twitter big" aria-label="Follow ANERIS on Twitter (opens in new window)">
+                                                <span class="sr-only">Twitter</span>
+                                            </a>
+                                            {% endif %}
+                                            {% if enable_linkedin and linkedin_url %}
+                                            <a href="{{linkedin_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-linkedin big" aria-label="Follow ANERIS on LinkedIn (opens in new window)">
+                                                <span class="sr-only">LinkedIn</span>
+                                            </a>
+                                            {% endif %}
+                                            {% if enable_youtube and youtube_url %}
+                                            <a href="{{youtube_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-youtube big" style="font-size: 37px!important;" aria-label="Subscribe to ANERIS on YouTube (opens in new window)">
+                                                <span class="sr-only">YouTube</span>
+                                            </a>
+                                            {% endif %}
+                                            {% if enable_instagram and instagram_url %}
+                                            <a href="{{instagram_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-instagram big" style="font-weight: 400 !important; margin-top: 2px; margin-left: 6px" aria-label="Follow ANERIS on Instagram (opens in new window)">
+                                                <span class="sr-only">Instagram</span>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </nav>
+                                </div>
 
+                                <div class="col-lg-7 col-md-7 col-xs-12 subscribe-btn">
+                                    <a href="https://dashboard.mailerlite.com/forms/375373/83340841528067158/share" target="_blank" rel="noopener noreferrer" class="btn-footer" aria-label="Subscribe to ANERIS newsletter (opens in new window)">Subscribe to newsletter</a>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="col-lg-2 col-md-2 col-xs-12">
-                        <a href="https://zenodo.org/communities/aneris/records?q=&l=list&p=1&s=10&sort=newest" target="_blank" class="btn btn-primary btn-zendo"></a>
+                        <div class="col-lg-2 col-md-2 col-xs-12">
+                            <a href="https://zenodo.org/communities/aneris/records?q=&l=list&p=1&s=10&sort=newest" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-zendo" aria-label="View ANERIS publications on Zenodo (opens in new window)">
+                                <span class="sr-only">Zenodo</span>
+                            </a>
+                        </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
-    </div>
-</div>
+    </section>
+</footer>

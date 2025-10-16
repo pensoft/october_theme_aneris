@@ -41,125 +41,141 @@ use Pensoft\Articles\Models\Article;
 use Carbon\Carbon;
 function onStart(){
     $this['entries'] = Entry::where('end', '>', Carbon::now())->where('show_on_timeline', true)->where('is_internal', false)->orderBy('start', 'asc')->take(3)->get();
-    $this['news'] = Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->take(3)->orderBy('published_at', 'DESC')->get();
+$this['news'] = Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->take(3)->orderBy('published_at', 'DESC')->get();
 
 }
 ?>
 ==
-<div class="container">
-    <div class="row between-md around-xs">
-        <div class="col-sm-4 col-xs-12 vision">
-            {% component 'vision' %}
+<main id="main-content" role="main">
+    <section class="container" aria-labelledby="about-heading">
+        <h2 id="about-heading" class="sr-only">About ANERIS</h2>
+        <div class="row between-md around-xs">
+            <div class="col-sm-4 col-xs-12 vision">
+                {% component 'vision' %}
+            </div>
+            <div class="col-sm-4 col-xs-12 mission">
+                {% component 'mission' %}
+            </div>
+            <div class="col-sm-4 col-xs-12 goals">
+                {% component 'goals' %}
+            </div>
         </div>
-        <div class="col-sm-4 col-xs-12 mission">
-            {% component 'mission' %}
-        </div>
-        <div class="col-sm-4 col-xs-12 goals">
-            {% component 'goals' %}
-        </div>
-    </div>
-</div>
+    </section>
 
-<div class="container numbers_container mt-4 mb-4">
-    {% component 'numbers' %}
-</div>
+    <section class="container numbers_container mt-4 mb-4" aria-labelledby="numbers-heading">
+        <h2 id="numbers-heading" class="sr-only">ANERIS by Numbers</h2>
+        {% component 'numbers' %}
+    </section>
 
-
-<!-- latest from news -->
-    <div class="container highlights-news">
+    <!-- latest from news -->
+    <section class="container highlights-news" aria-labelledby="latest-news-heading">
         <div class="row">
             <div class="col-xs-12">
-                <h1 class="base_heading highlight_new_template_3">Latest News</h1>
+                <h2 id="latest-news-heading" class="base_heading highlight_new_template_3">Latest News</h2>
             </div>
         </div>
         <div class="row newslist">
             <div class="col-xs-12">
-                    {% for highlight in news %}
-                    <div class="col-xs-12 col-md-4 news-item item-{{highlight.slug}}">
-
-
-                        <div class="row news_column">
-                            <a href="{{'news'|page}}/{{highlight.slug}}">
-                                <div class="news_image">
-                                    <img class="news-img-top" src="{{ highlight.cover|crop_image|resize(362, 207, {'mode': 'crop'}) }}" />
+                {% for highlight in news %}
+                <article class="col-xs-12 col-md-4 news-item item-{{highlight.slug}}">
+                    <div class="row news_column">
+                        <a href="{{'news'|page}}/{{highlight.slug}}" aria-label="Read {{ highlight.title }}">
+                            <div class="news_image">
+                                <img class="news-img-top" src="{{ highlight.cover|crop_image|resize(362, 207, {'mode': 'crop'}) }}" alt="{{ highlight.title }}" loading="lazy" />
+                            </div>
+                            <div class="news-container">
+                                <div class="news-title">
+                                    <h3 class="card-title">{{ highlight.title|length > 50 ? highlight.title|slice(0, 50)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
                                 </div>
-                                <div class="news-container">
-                                    <div class="news-title">
-                                        <h3 class="card-title">{{ highlight.title|length > 50 ? highlight.title|slice(0, 50)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
-                                    </div>
-                                    <div class="read_more">Read more</div>
-                                </div>
-                            </a>
-                        </div>
+                                <span class="read_more">Read more</span>
+                            </div>
+                        </a>
                     </div>
-                    {% endfor %}
+                </article>
+                {% endfor %}
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-xs-12 center-xs">
-                <a href="{{'news'|page}}" class="read_more type_button" style="font-size: 20px;">All news</a>
+                <a href="{{'news'|page}}" class="read_more type_button" style="font-size: 20px;" aria-label="View all news articles">All news</a>
             </div>
         </div>
-    </div>
+    </section>
 
-
-
-	<div class="container mt-4">
-        
-	<div class="row between-xs d-flex align-items-center">
-		<div class="col-lg-7 col-xs-12 upcoming_events_container">
-            <h1 class="base_heading"><a href="{{'events'|page}}"><span></span>Upcoming Events<span></span></a></h1>
-            {% for event in entries %}
-                <div class="row entry_item">
+    <div class="container mt-4">
+        <div class="row between-xs d-flex align-items-center">
+            <section class="col-lg-7 col-xs-12 upcoming_events_container" aria-labelledby="upcoming-events-heading">
+                <h2 id="upcoming-events-heading" class="base_heading">
+                    <a href="{{'events'|page}}">
+                        <span aria-hidden="true"></span>Upcoming Events<span aria-hidden="true"></span>
+                    </a>
+                </h2>
+                {% for event in entries %}
+                <article class="row entry_item">
                     <div class="col-md-2 col-xs-12 start-md center-xs">
-                        <span class="date_day">{{event.start|date("d")}}</span>
-                        <span class="date_month">{{event.start|date("M")}}</span>
-                        <span class="date_year">{{event.start|date("Y")}}</span>
+                        <time datetime="{{event.start|date('Y-m-d')}}">
+                            <span class="date_day">{{event.start|date("d")}}</span>
+                            <span class="date_month">{{event.start|date("M")}}</span>
+                            <span class="date_year">{{event.start|date("Y")}}</span>
+                        </time>
                     </div>
                     <div class="col-md-10 col-xs-12 start-md center-xs mt-md-0 mt-1">
                         <h3>{{event.title|raw}}</h3>
-                        {{event.place}}
+                        <p>{{event.place}}</p>
                     </div>
                     <div class="col-md-12 col-xs-12 end-md center-xs mt-md-0 mt-1">
-                        <a href="{{'events'|page}}/{{event.slug}}" class="read_more">Read more</a>
+                        <a href="{{'events'|page}}/{{event.slug}}" class="read_more" aria-label="Read more about {{event.title|striptags}}">Read more</a>
                     </div>
-                </div>
-            {% endfor %}
-		</div>
+                </article>
+                {% endfor %}
+            </section>
 
-        <div class="col-lg-5 col-xs-12 social_media_conainer">
-            <div class="social-media">
-                <div class="row social-media-box">
-                    <div class="col-xs-12">
-                        <h1>Follow ANERIS</h1>
-                        <div class="row subscribe-items">
-                            {% if this.theme.twitter %}
-                            <a href="{{this.theme.twitter_url}}" target="_blank" class="btn p-primary pr p-twitter middle"></a>
-                            {% endif %}
-                            {% if this.theme.facebook %}
-                            <a href="{{this.theme.facebook_url}}" target="_blank" class="btn pr p-primary p-facebook middle"></a>
-                            {% endif %}
-                            {% if this.theme.linkedin %}
-                            <a href="{{this.theme.linkedin_url}}" target="_blank" class="btn pr p-primary p-linkedin middle"></a>
-                            {% endif %}
-                            {% if this.theme.youtube %}
-                            <a href="{{this.theme.youtube_url}}" target="_blank" class="btn pr p-primary p-youtube middle"></a>
-                            {% endif %}
-                            {% if this.theme.instagram %}
-                            <a href="{{this.theme.instagram_url}}" target="_blank" class="btn pr p-primary p-instagram middle"></a>
-                            {% endif %}
-                            {% if this.theme.researchgate %}
-                            <a href="{{this.theme.researchgate_url}}" target="_blank" class="btn pr p-primary p-researchgate middle"></a>
-                            {% endif %}
+            <aside class="col-lg-5 col-xs-12 social_media_conainer" aria-label="Social media and resources">
+                <div class="social-media">
+                    <div class="row social-media-box">
+                        <div class="col-xs-12">
+                            <h2>Follow ANERIS</h2>
+                            <nav class="row subscribe-items" aria-label="Social media links">
+                                {% if this.theme.twitter %}
+                                <a href="{{this.theme.twitter_url}}" target="_blank" rel="noopener noreferrer" class="btn p-primary pr p-twitter middle" aria-label="Follow ANERIS on Twitter (opens in new window)">
+                                    <span class="sr-only">Twitter</span>
+                                </a>
+                                {% endif %}
+                                {% if this.theme.facebook %}
+                                <a href="{{this.theme.facebook_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-facebook middle" aria-label="Follow ANERIS on Facebook (opens in new window)">
+                                    <span class="sr-only">Facebook</span>
+                                </a>
+                                {% endif %}
+                                {% if this.theme.linkedin %}
+                                <a href="{{this.theme.linkedin_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-linkedin middle" aria-label="Follow ANERIS on LinkedIn (opens in new window)">
+                                    <span class="sr-only">LinkedIn</span>
+                                </a>
+                                {% endif %}
+                                {% if this.theme.youtube %}
+                                <a href="{{this.theme.youtube_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-youtube middle" aria-label="Subscribe to ANERIS on YouTube (opens in new window)">
+                                    <span class="sr-only">YouTube</span>
+                                </a>
+                                {% endif %}
+                                {% if this.theme.instagram %}
+                                <a href="{{this.theme.instagram_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-instagram middle" aria-label="Follow ANERIS on Instagram (opens in new window)">
+                                    <span class="sr-only">Instagram</span>
+                                </a>
+                                {% endif %}
+                                {% if this.theme.researchgate %}
+                                <a href="{{this.theme.researchgate_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-researchgate middle" aria-label="Follow ANERIS on ResearchGate (opens in new window)">
+                                    <span class="sr-only">ResearchGate</span>
+                                </a>
+                                {% endif %}
+                            </nav>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 items-center d-flex justify-content-center mt-1">
-                <a href="https://zenodo.org/communities/aneris/records?q=&l=list&p=1&s=10&sort=newest" target="_blank" class="btn btn-primary btn-zendo"></a>
-            </div>
+                <div class="col-xs-12 items-center d-flex justify-content-center mt-1">
+                    <a href="https://zenodo.org/communities/aneris/records?q=&l=list&p=1&s=10&sort=newest" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-zendo" aria-label="View ANERIS publications on Zenodo (opens in new window)">
+                        <span class="sr-only">Zenodo</span>
+                    </a>
+                </div>
+            </aside>
         </div>
-
-	</div>
-
-</div>
+    </div>
+</main>

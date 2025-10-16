@@ -18,13 +18,13 @@ function onStart()
 {
     $this['article'] = Pensoft\Articles\Models\Article::where('slug', $this->param('id'))->first();
     $this['categories'] = Category::orderBy('sort_order')->orderBy('created_at', 'desc')->get();
-	
+
     $categoryId = input('categoryId', 'all');
 
     if ($categoryId !== 'all' && !is_numeric($categoryId)) {
         return redirect('news');
     }
-	
+
     $this['categoryId'] = $categoryId;
 
     if ($categoryId === 'all') {
@@ -118,73 +118,80 @@ $this['related'] = $related;
 }
 ?>
 ==
-{% if is_detail_page %}
-<div class="container" style="max-width: 950px;">
-    <div class="some_news_background2"></div>
-    <div class="some_news_background"></div>
+<main id="main-content" role="main">
+    {% if is_detail_page %}
+    <article class="container" style="max-width: 950px;">
+        <div class="some_news_background2" aria-hidden="true"></div>
+        <div class="some_news_background" aria-hidden="true"></div>
         <div class="row single-news-item">
             {% if article.cover %}
             <div class="col-md-6 col-xs-12">
-                <img class="content left" src="{{ article.cover|crop_image|resize(555, auto, { mode: 'crop' }) }}" />
-                {% if article.caption %}
-                {{article.caption|raw}}
-                {% endif %}
+                <figure>
+                    <img class="content left" src="{{ article.cover|crop_image|resize(555, auto, { mode: 'crop' }) }}" alt="{{article.title}}" loading="lazy" />
+                    {% if article.caption %}
+                    <figcaption>{{article.caption|raw}}</figcaption>
+                    {% endif %}
+                </figure>
             </div>
             {% endif %}
 
             <div class="col-md-6 col-xs-12">
-                    <div class="news-title">
-                        <h1 class="single-new-title">{{article.title}}</h1>
-                    </div>
-                    <div class="text-published">{{article.published_at|date("d M Y")}}</div>
-
+                <header class="news-title">
+                    <h1 class="single-new-title">{{article.title}}</h1>
+                </header>
+                <time class="text-published" datetime="{{article.published_at|date('Y-m-d')}}">{{article.published_at|date("d M Y")}}</time>
             </div>
+
             <div class="col-xs-12">
                 <div class="content">
                     {{article.content|raw}}
                     {% component 'gallery' %}
                 </div>
             </div>
+
             <div class="col-xs-12">
-
-
-                <div class="row share_container middle-xs">
-                    <div class="col-lg-1 col-xs-2 start-xs">Share</div>
-                    <div class="col-xs-10">
-                        <a href="http://twitter.com/share?text={{article.title}}&url={{page_url}}" target="_blank" class="btn p-primary pr p-twitter medium" style="font-size: 24px!important;"></a>
-
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="btn pr p-primary p-facebook medium"></a>
-
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="btn pr p-primary p-linkedin medium"></a>
-
+                <nav class="row share_container middle-xs" aria-label="Share this article">
+                    <div class="col-lg-1 col-xs-2 start-xs">
+                        <span>Share</span>
                     </div>
-                </div>
+                    <div class="col-xs-10">
+                        <a href="http://twitter.com/share?text={{article.title}}&url={{page_url}}" target="_blank" rel="noopener noreferrer" class="btn p-primary pr p-twitter medium" style="font-size: 24px!important;" aria-label="Share on Twitter (opens in new window)">
+                            <span class="sr-only">Twitter</span>
+                        </a>
 
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-facebook medium" aria-label="Share on Facebook (opens in new window)">
+                            <span class="sr-only">Facebook</span>
+                        </a>
 
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-linkedin medium" aria-label="Share on LinkedIn (opens in new window)">
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                    </div>
+                </nav>
             </div>
         </div>
-</div>
-	{% else %}
-        <div class="container">
+    </article>
 
-            <div class="category-tabs-container mb-2">
-                {% if categories.count > 0 %}
-                <div class="row category-tabs" id="category-tabs">
-                    <a href="{{ 'news'|page }}" class="{{ 'all' == categoryId ? 'active' : '' }}">All News</a>
-                    {% for category in categories %}
-                    <a href="{{ 'news'|page }}?categoryId={{ category.id }}" class="{{ category.id == categoryId ? 'active' : '' }}">{{ category.name }}</a>
-                    {% endfor %}
-                </div>
-                {% endif %}
+    {% else %}
+    <div class="container">
+        {% if categories.count > 0 %}
+        <nav class="category-tabs-container mb-2" aria-label="News categories">
+            <div class="row category-tabs" id="category-tabs" role="tablist">
+                <a href="{{ 'news'|page }}" role="tab" aria-selected="{{ 'all' == categoryId ? 'true' : 'false' }}" class="{{ 'all' == categoryId ? 'active' : '' }}">All News</a>
+                {% for category in categories %}
+                <a href="{{ 'news'|page }}?categoryId={{ category.id }}" role="tab" aria-selected="{{ category.id == categoryId ? 'true' : 'false' }}" class="{{ category.id == categoryId ? 'active' : '' }}">{{ category.name }}</a>
+                {% endfor %}
             </div>
+        </nav>
+        {% endif %}
 
-            <div class="newslist-records" id="newslist-records">
-                {% partial 'components/newslist-records' %}
-            </div>
-            
-            <div class="row container">
-                {{ records.render|raw }}
-            </div>
+        <section class="newslist-records" id="newslist-records" role="region" aria-label="News articles">
+            {% partial 'components/newslist-records' %}
+        </section>
 
-        </div>
-	{% endif %}
+        <nav class="row container" aria-label="Pagination">
+            {{ records.render|raw }}
+        </nav>
+    </div>
+    {% endif %}
+</main>

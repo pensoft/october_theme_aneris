@@ -63,106 +63,122 @@ $this['slug'] = $this->param('slug');
 }
 ?>
 ==
-{% if not slug %}
-<div class="container">
-    <div class="tabs">
-        <a class="" href="#listView">List view</a>
-        <a class="" href="#calendarView">Calendar view</a>
-        
-    </div>
-</div>
-<!--tabs content	-->
-<div class="container-fluid">
+<main id="main-content" role="main">
+    {% if not slug %}
     <div class="container">
-        
-        <div class="row" id="listView">
-            <div class="events_list_container">
-                {% for entry in entries %}
-                {% set url = entry.url ?  entry.url : '/events/' ~ entry.slug %}
+        <nav class="tabs" aria-label="View options">
+            <ul role="tablist" style="list-style: none; padding: 0; display: flex;">
+                <li role="presentation">
+                    <a href="#listView" role="tab" aria-controls="listView" aria-selected="true">List view</a>
+                </li>
+                <li role="presentation">
+                    <a href="#calendarView" role="tab" aria-controls="calendarView" aria-selected="false">Calendar view</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-                <div class="row entry_item middle-xs">
-                    <div class="col-md-1 col-xs-12">
-                        <span class="date_day">{{entry.start|date("d")}}</span>
-                        <span class="date_month">{{entry.start|date("M")}}</span>
-                        <span class="date_year">{{entry.start|date("Y")}}</span>
-                    </div>
-                    <div class="col-md-8 col-xs-12">
-                        <span class="date_week mb-1">{{entry.start|date("l")}}</span>
-                        {{entry.title|raw}}
-                    </div>
-                    <div class="col-md-3 col-xs-12 end-md center-xs">
-                        <a href="{{'events'|page}}/{{entry.slug}}" class="read_more">Read more</a>
-                    </div>
+    <!--tabs content   -->
+    <div class="container-fluid">
+        <div class="container">
+            <section class="row" id="listView" role="tabpanel" aria-labelledby="list-view-tab">
+                <h2 id="list-view-tab" class="sr-only">List View</h2>
+                <div class="events_list_container">
+                    {% for entry in entries %}
+                    {% set url = entry.url ? entry.url : '/events/' ~ entry.slug %}
+
+                    <article class="row entry_item middle-xs">
+                        <div class="col-md-1 col-xs-12">
+                            <time datetime="{{entry.start|date('Y-m-d')}}">
+                                <span class="date_day">{{entry.start|date("d")}}</span>
+                                <span class="date_month">{{entry.start|date("M")}}</span>
+                                <span class="date_year">{{entry.start|date("Y")}}</span>
+                            </time>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <span class="date_week mb-1">{{entry.start|date("l")}}</span>
+                            <h3>{{entry.title|raw}}</h3>
+                        </div>
+                        <div class="col-md-3 col-xs-12 end-md center-xs">
+                            <a href="{{'events'|page}}/{{entry.slug}}" class="read_more" aria-label="Read more about {{entry.title|striptags}}">Read more</a>
+                        </div>
+                    </article>
+                    {% endfor %}
                 </div>
 
-                {% endfor %}
-            </div>
-            {% if entries.count > 20 %}
-            <div class="row container">
-                {{ entries.fragment('listView').render|raw }}
+                {% if entries.count > 20 %}
+                <nav class="row container" aria-label="Pagination">
+                    {{ entries.fragment('listView').render|raw }}
+                </nav>
+                {% endif %}
+            </section>
+
+            <section class="row" id="calendarView" role="tabpanel" aria-labelledby="calendar-view-tab">
+                <h2 id="calendar-view-tab" class="sr-only">Calendar View</h2>
+                {% component 'calendar' %}
+            </section>
+        </div>
+    </div>
+
+    {% else %}
+
+    {% if entry %}
+    <article class="container" style="max-width: 950px;">
+        <div class="row single-news-item">
+            {% if entry.image %}
+            <div class="col-md col-xs-12">
+                <figure>
+                    <img class="content left" src="{{ entry.image|crop_image|resize(555, auto, { mode: 'crop' }) }}" alt="{{entry.title}}" loading="lazy" />
+                </figure>
             </div>
             {% endif %}
 
-        </div>
-        <div class="row" id="calendarView">
-            {% component 'calendar' %}
-        </div>
-
-    </div>
-
-</div>
-
-
-{% else %}
-
-{% if entry %}
-<div class="container" style="max-width: 950px;">
-    <div class="row single-news-item">
-        {% if entry.image %}
-        <div class="col-md col-xs-12">
-            <img class="content left" src="{{ entry.image|crop_image|resize(555, auto, { mode: 'crop' }) }}" />
-        </div>
-        {% endif %}
-
-        <div class="col-md col-xs-12">
-            <div class="news-title">
-                <h1 class="single-new-title">{{entry.title}}</h1>
-            </div>
-            <div class="text-published">{{entry.start|date("d M Y")}} - {{entry.end|date("d M Y")}}</div>
-            <div class="text-place">{{entry.place}}</div>
-
-        </div>
-        <div class="col-xs-12">
-            <div class="content">
-                {{entry.description|raw}}
+            <div class="col-md col-xs-12">
+                <header class="news-title">
+                    <h1 class="single-new-title">{{entry.title}}</h1>
+                </header>
+                <p class="text-published">
+                    <time datetime="{{entry.start|date('Y-m-d')}}">{{entry.start|date("d M Y")}}</time> -
+                    <time datetime="{{entry.end|date('Y-m-d')}}">{{entry.end|date("d M Y")}}</time>
+                </p>
+                <p class="text-place">{{entry.place}}</p>
             </div>
 
-        </div>
-        <div class="col-xs-12">
-
-            {% if entry.url %}
-            <br><br><a href="{{entry.url}}" class="read_more" target="_blank">Go to event website</a>
-            {% endif %}
-
-
-
-            <div class="row share_container middle-xs">
-                <div class="col-lg-1 col-xs-2 start-xs">Share</div>
-                <div class="col-xs-10">
-                    <a href="http://twitter.com/share?text={{entry.title}}&url={{page_url}}" target="_blank" class="btn p-primary pr p-twitter medium"></a>
-
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="btn pr p-primary p-facebook medium"></a>
-
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="btn pr p-primary p-linkedin medium"></a>
-
+            <div class="col-xs-12">
+                <div class="content">
+                    {{entry.description|raw}}
                 </div>
             </div>
 
+            <div class="col-xs-12">
+                {% if entry.url %}
+                <p style="margin-top: 2rem;">
+                    <a href="{{entry.url}}" class="read_more" target="_blank" rel="noopener noreferrer" aria-label="Go to {{entry.title|striptags}} event website (opens in new window)">Go to event website</a>
+                </p>
+                {% endif %}
 
+                <nav class="row share_container middle-xs" aria-label="Share this event">
+                    <div class="col-lg-1 col-xs-2 start-xs">
+                        <span>Share</span>
+                    </div>
+                    <div class="col-xs-10">
+                        <a href="http://twitter.com/share?text={{entry.title}}&url={{page_url}}" target="_blank" rel="noopener noreferrer" class="btn p-primary pr p-twitter medium" aria-label="Share on Twitter (opens in new window)">
+                            <span class="sr-only">Twitter</span>
+                        </a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-facebook medium" aria-label="Share on Facebook (opens in new window)">
+                            <span class="sr-only">Facebook</span>
+                        </a>
+
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-linkedin medium" aria-label="Share on LinkedIn (opens in new window)">
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
         </div>
-    </div>
-</div>
+    </article>
+    {% endif %}
 
-{% endif %}
-
-{% endif %}
+    {% endif %}
+</main>

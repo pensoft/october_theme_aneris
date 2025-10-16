@@ -56,22 +56,25 @@ return Profiles::where('partner_id', $id)->where('category_id',  2)->get();
 }
 ?>
 ==
-<div class="container">
-        <div class="consortium center-xs">
+<main id="main-content" role="main">
+    <div class="container">
+        <section class="consortium center-xs" aria-labelledby="consortium-heading">
             {% component 'consortium' %}
-        </div>
+        </section>
 
-        <div class="tabs">
+        <nav class="tabs" aria-label="View options">
             <a class="" href="#mapView">Map view</a>
             <a class="" href="#listView">List view</a>
-        </div>
+        </nav>
 
-        <div id="mapView">
-            <div class="svg_map">
+        <section id="mapView" role="tabpanel" aria-labelledby="map-view-tab">
+            <h2 id="map-view-tab" class="sr-only">Map View</h2>
+            <div class="svg_map" role="img" aria-label="Interactive map of consortium partners">
                 {% partial 'components/svg' %}
             </div>
-        </div>
-        <div id="listView" class="accordion-insider-members-list">
+        </section>
+        <section id="listView" class="accordion-insider-members-list" role="tabpanel" aria-labelledby="list-view-tab">
+            <h2 id="list-view-tab" class="sr-only">List View</h2>
             {% for partner in partners %}
             <div class="col-xs-12 partner-item">
                 <div class="row">
@@ -92,10 +95,9 @@ return Profiles::where('partner_id', $id)->where('category_id',  2)->get();
                                 <div class="contact_info row">
                                     <div class="col-xs-12 coordinator_image">
                                         {% if profile.avatar %}
-                                        <!--                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,145,{'mode':'crop'})}}">-->
-                                        <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,165,{'mode':'crop'})}}">
+                                        <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,165,{'mode':'crop'})}}" loading="lazy" width="175" height="165">
                                         {% else %}
-                                        <img alt="{{ profile.names }}" src="{{ 'avatar.svg'|media }}" width="175" height="148" class="no-image">
+                                        <img alt="{{ profile.names }} - default avatar" src="{{ 'avatar.svg'|media }}" width="175" height="148" class="no-image" loading="lazy">
                                         {% endif %}
                                     </div>
                                     <div class="col-xs-12 coordinator_info">
@@ -112,17 +114,16 @@ return Profiles::where('partner_id', $id)->where('category_id',  2)->get();
             </div>
 
             {% endfor %}
-        </div>
+        </section>
 
 
         <span class="tooltiptext" id="tooltip">Bulgaria</span>
-        <div class="container partners-map-container">
-            <div id="mycomponentpartners" class="row">
 
+        <section class="container partners-map-container" aria-labelledby="partners-detail-heading">
+            <h2 id="partners-detail-heading" class="sr-only">Partner Details</h2>
+            <div id="mycomponentpartners" class="row">
                 {% component 'PartnersPage' %}
             </div>
-        </div>
-
-
-
+        </section>
     </div>
+</main>
