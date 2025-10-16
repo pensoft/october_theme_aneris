@@ -1,6 +1,12 @@
 url = "/internal-repository/reporting-table"
 layout = "default"
 title = "INTERNAL REPOSITORY"
+
+[jumbotron]
+jumbotron = "reporting-table"
+background = "transperant"
+templates = "template3"
+description_limit = 0
 ==
 <div class="container">
 
@@ -19,10 +25,8 @@ title = "INTERNAL REPOSITORY"
 
 
 		<div class="col-xs-12">
-		<ul class="reporting-table">
-			<li><a href="https://docs.google.com/spreadsheets/d/13j7c0fJHAnauEzBsA1xPl0dho9O8AYoXRTqO-LM3uy4/edit?usp=sharing" target="_blank">ANERIS Dissemination Master Table</a></li>
-		</ul>
 		
+		{% component 'jumbotron' %}
 
 		</div>
 
