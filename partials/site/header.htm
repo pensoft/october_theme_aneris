@@ -45,7 +45,7 @@ description_limit = 0
     <nav class="navbar" id="headernavbar" aria-label="Main navigation">
         <a href="{{'home'|page}}" class="navbar-brand" id="navbar-brand" aria-label="ANERIS Project - Go to homepage">
             <span class="sr-only">ANERIS Project</span>
-            <div style="background-image: url('{{ this.theme.site_logo.getPath() }}'); background-position: center; background-size: contain; width: 100%; height: 100%;" role="img" aria-label="ANERIS Project logo"></div>
+            <div style="background-image: url('{{ this.theme.site_logo.getPath() }}'); background-position: center; background-size: contain; width: 100%; height: 100%; background-repeat: no-repeat;" role="img" aria-label="ANERIS Project logo"></div>
         </a>
 
         <a class="navbar-toggler" type="button" aria-controls="headerNavbarNav" aria-expanded="false" aria-label="Toggle navigation menu" id="navbarToggleBtn">
@@ -75,7 +75,7 @@ description_limit = 0
                     <a type="button" onclick="showSearchForm();" aria-label="Open search form" class="search-toggle-btn"></a>
                 </li>
                 <li class="nav-item social">
-                    <nav aria-label="Social media links">
+                    <nav aria-label="Social media links" class="nav-social-links">
                         <a href="https://twitter.com/ANERISproject" target="_blank" rel="noopener noreferrer" class="pr p-twitter normal" aria-label="Follow ANERIS on Twitter (opens in new window)">
                             <span class="sr-only">Twitter</span>
                         </a>
