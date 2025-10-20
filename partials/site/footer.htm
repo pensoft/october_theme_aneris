@@ -176,19 +176,25 @@ function onStart(){
                                                 <span class="sr-only">Twitter</span>
                                             </a>
                                             {% endif %}
+                                            {% if enable_bluesky and bluesky_url %}
+                                            <a href="{{bluesky_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-bluesky big" aria-label="Follow ANERIS on Bluesky (opens in new window)">
+                                                <span class="sr-only">Bluesky</span>
+                                            </a>
+                                            {% endif %}
                                             {% if enable_linkedin and linkedin_url %}
                                             <a href="{{linkedin_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-linkedin big" aria-label="Follow ANERIS on LinkedIn (opens in new window)">
                                                 <span class="sr-only">LinkedIn</span>
                                             </a>
                                             {% endif %}
-                                            {% if enable_youtube and youtube_url %}
-                                            <a href="{{youtube_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-youtube big" style="font-size: 37px!important;" aria-label="Subscribe to ANERIS on YouTube (opens in new window)">
-                                                <span class="sr-only">YouTube</span>
-                                            </a>
-                                            {% endif %}
+
                                             {% if enable_instagram and instagram_url %}
                                             <a href="{{instagram_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-instagram big" style="font-weight: 400 !important; margin-top: 2px; margin-left: 6px" aria-label="Follow ANERIS on Instagram (opens in new window)">
                                                 <span class="sr-only">Instagram</span>
+                                            </a>
+                                            {% endif %}
+                                            {% if enable_youtube and youtube_url %}
+                                            <a href="{{youtube_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-youtube big" style="font-size: 37px!important;" aria-label="Subscribe to ANERIS on YouTube (opens in new window)">
+                                                <span class="sr-only">YouTube</span>
                                             </a>
                                             {% endif %}
                                         </div>

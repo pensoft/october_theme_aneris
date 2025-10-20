@@ -60,6 +60,10 @@
         .font-size(1.05);
         // margin-top: 3px;
       }
+      &.p-bluesky{
+        .font-size(1.05);
+        // margin-top: 3px;
+      }
       &.p-youtube{
         .font-size(1.65);
         margin-top: 2px;
@@ -74,6 +78,11 @@
         margin-top: 7px;
       }
 
+      &.p-bluesky{
+        .font-size(1.2);
+        margin-top: 7px;
+      }
+
       &.p-youtube{
         font-size: 24px !important;
       }
@@ -82,12 +91,18 @@
       &.p-twitter{
         .font-size(1.8);
       }
+      &.p-bluesky{
+        .font-size(1.8);
+      }
       .font-size(2.3);
     }
 
     &.medium {
       .font-size(2.7);
       &.p-twitter{
+        .font-size(2.3);
+      }
+      &.p-bluesky{
         .font-size(2.3);
       }
     }
@@ -279,8 +294,16 @@
     content: "\eaf1";
 }
 .p-twitter:before {
-  font-family: 'x-icon';
-  content: "\e901";
+    font-family: 'x-icon';
+    content: "\e902";
+}
+.p-bluesky:before {
+    font-family: 'x-icon';
+    content: "\e900";
+}
+.p-threads:before {
+    font-family: 'x-icon';
+    content: "\e904";
 }
 .p-youtube:before {
     content: "\eaf3";

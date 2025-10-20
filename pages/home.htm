@@ -141,6 +141,11 @@ $this['news'] = Article::news()->where('published_at', '<=', 'now()')->where('pu
                                     <span class="sr-only">Twitter</span>
                                 </a>
                                 {% endif %}
+                                {% if this.theme.bluesky %}
+                                <a href="{{this.theme.bluesky_url}}" target="_blank" rel="noopener noreferrer" class="btn p-primary pr p-bluesky middle" aria-label="Follow ANERIS on Bluesky (opens in new window)">
+                                    <span class="sr-only">Bluesky</span>
+                                </a>
+                                {% endif %}
                                 {% if this.theme.facebook %}
                                 <a href="{{this.theme.facebook_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-facebook middle" aria-label="Follow ANERIS on Facebook (opens in new window)">
                                     <span class="sr-only">Facebook</span>
@@ -151,19 +156,15 @@ $this['news'] = Article::news()->where('published_at', '<=', 'now()')->where('pu
                                     <span class="sr-only">LinkedIn</span>
                                 </a>
                                 {% endif %}
-                                {% if this.theme.youtube %}
-                                <a href="{{this.theme.youtube_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-youtube middle" aria-label="Subscribe to ANERIS on YouTube (opens in new window)">
-                                    <span class="sr-only">YouTube</span>
-                                </a>
-                                {% endif %}
+
                                 {% if this.theme.instagram %}
                                 <a href="{{this.theme.instagram_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-instagram middle" aria-label="Follow ANERIS on Instagram (opens in new window)">
                                     <span class="sr-only">Instagram</span>
                                 </a>
                                 {% endif %}
-                                {% if this.theme.researchgate %}
-                                <a href="{{this.theme.researchgate_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-researchgate middle" aria-label="Follow ANERIS on ResearchGate (opens in new window)">
-                                    <span class="sr-only">ResearchGate</span>
+                                {% if this.theme.youtube %}
+                                <a href="{{this.theme.youtube_url}}" target="_blank" rel="noopener noreferrer" class="btn pr p-primary p-youtube middle" aria-label="Subscribe to ANERIS on YouTube (opens in new window)">
+                                    <span class="sr-only">YouTube</span>
                                 </a>
                                 {% endif %}
                             </nav>
