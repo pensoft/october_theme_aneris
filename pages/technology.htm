@@ -10,6 +10,31 @@ robot_follow = "follow"
 [Technology]
 tag = "{{ :tag }}"
 ==
+<?php
+
+function onStart()
+{
+    if (input('download')) {
+        $url      = input('url');
+        $filename = input('filename', 'download.jpg');
+
+        // Security: only allow your own domain
+        if (!str_starts_with($url, 'https://aneris.eu/')) {
+            abort(403);
+        }
+
+        $contents = file_get_contents($url);
+        $mimeType = mime_content_type('data://application/octet-stream;base64,' . base64_encode($contents));
+
+        return response($contents, 200, [
+            'Content-Type'        => $mimeType,
+'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+]);
+}
+}
+
+?>
+==
 {% component 'siteSearchInclude' %}
 
 <main id="main-content" role="main">
