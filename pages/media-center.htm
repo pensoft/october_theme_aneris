@@ -17,7 +17,6 @@ use Pensoft\Media\Models\Pressreleases;
 use Pensoft\Media\Models\Videos;
 use Pensoft\Media\Models\Graphic;
 use Pensoft\Media\Models\Documents;
-use System\Models\File;
 
 function onStart(){
 	$this['logos'] =  MediaLogos::get();
@@ -28,22 +27,6 @@ function onStart(){
 	$this['graphics'] =  Graphic::get();
 	$this['videos'] =  Videos::get();
     $this['documents'] =  Documents::get();
-}
-
-
-function onDownloadFile(){
-	$file = File::find(post('id'));
-	$pathToFile = $file->getLocalPath();
-    $fileName = $file->file_name;
-    $fileType = $file->content_type;
-    $headers = [
-        'HTTP/1.1 200 OK',
-        'Pragma: public',
-        'Content-Type: '.$fileType,
-        'Content-Type: application/force-download'
-    ];
-
-    return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
@@ -165,30 +148,21 @@ function onDownloadFile(){
                             <h3 class="card_title">Download {{record.name}}</h3>
                             <div class="download-buttons">
                                 {% if record.file_jpg %}
-                                {{form_open({ request: 'onDownloadFile' }) }}
-                                <input type="hidden" value="{{record.file_jpg.id}}" name="id">
-                                <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.name}} as JPG">
+                                <a href="{{record.file_jpg.path}}" download="{{record.file_jpg.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}} as JPG">
                                     <i class="pr p-download" aria-hidden="true"></i> JPG
-                                </button>
-                                {{ form_close() }}
+                                </a>
                                 {% endif %}
 
                                 {% if record.file_png %}
-                                {{form_open({ request: 'onDownloadFile' }) }}
-                                <input type="hidden" value="{{record.file_png.id}}" name="id">
-                                <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.name}} as PNG">
+                                <a href="{{record.file_png.path}}" download="{{record.file_png.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}} as PNG">
                                     <i class="pr p-download" aria-hidden="true"></i> PNG
-                                </button>
-                                {{ form_close() }}
+                                </a>
                                 {% endif %}
 
                                 {% if record.file_eps %}
-                                {{form_open({ request: 'onDownloadFile' }) }}
-                                <input type="hidden" value="{{record.file_eps.id}}" name="id">
-                                <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.name}} as SVG">
+                                <a href="{{record.file_eps.path}}" download="{{record.file_eps.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}} as SVG">
                                     <i class="pr p-download" aria-hidden="true"></i> SVG
-                                </button>
-                                {{ form_close() }}
+                                </a>
                                 {% endif %}
 
                                 {% if record.file_pdf %}
@@ -223,12 +197,9 @@ function onDownloadFile(){
                     {% if record.file %}
                     <div class="col-xs-12">
                         <div class="text-center">
-                            {{form_open({ request: 'onDownloadFile' }) }}
-                            <input type="hidden" value="{{record.file.id}}" name="id">
-                            <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.name}}">
+                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
                                 <i class="pr p-download" aria-hidden="true"></i> Download
-                            </button>
-                            {{ form_close() }}
+                            </a>
                         </div>
                     </div>
                     {% endif %}
@@ -276,12 +247,9 @@ function onDownloadFile(){
                             {% endif %}
 
                             {% if record.file %}
-                            {{form_open({ request: 'onDownloadFile' }) }}
-                            <input type="hidden" value="{{record.file.id}}" name="id">
-                            <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.name}}">
+                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
                                 <i class="pr p-download" aria-hidden="true"></i> Download
-                            </button>
-                            {{ form_close() }}
+                            </a>
                             {% endif %}
                         </div>
                     </div>
@@ -305,12 +273,9 @@ function onDownloadFile(){
 
                         <p>Attachment: {{record.file.file_name}}, {{record.file.size}}</p>
 
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file.id}}" name="id">
-                        <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.name}}">
+                        <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
                             <i class="pr p-download" aria-hidden="true"></i> Download
-                        </button>
-                        {{ form_close() }}
+                        </a>
                         {% endif %}
 
                         {% if record.youtube_url %}
@@ -340,12 +305,9 @@ function onDownloadFile(){
                     {% if record.file %}
                     <div class="col-xs-12">
                         <div class="text-center">
-                            {{form_open({ request: 'onDownloadFile' }) }}
-                            <input type="hidden" value="{{record.file.id}}" name="id">
-                            <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.name}}">
+                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
                                 <i class="pr p-download" aria-hidden="true"></i> Download
-                            </button>
-                            {{ form_close() }}
+                            </a>
                         </div>
                     </div>
                     {% endif %}
@@ -373,12 +335,9 @@ function onDownloadFile(){
                     {% if record.file %}
                     <div class="col-xs-12">
                         <div class="text-center">
-                            {{form_open({ request: 'onDownloadFile' }) }}
-                            <input type="hidden" value="{{record.file.id}}" name="id">
-                            <button type="submit" class="btn btn-primary" data-attach-loading aria-label="Download {{record.title}}">
+                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.title}}">
                                 <i class="pr p-download" aria-hidden="true"></i> Download
-                            </button>
-                            {{ form_close() }}
+                            </a>
                         </div>
                     </div>
                     {% endif %}
