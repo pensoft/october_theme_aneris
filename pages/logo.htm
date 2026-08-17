@@ -69,13 +69,31 @@ return Redirect::to('/media-center/logo');
                 <div class="text-center">
                     <div class="card_title">Download {{record.name}}</div>
                     {% if record.file_jpg %}
-                    <a href="{{ ''| page }}?{{queries}}&download={{record.file_jpg.id}}&file_name={{record.file_jpg.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  JPG</a> &nbsp;
+                    {% partial 'components/download-link'
+                        file=record.file_jpg
+                        group='brand-kit'
+                        label='JPG'
+                        title='Logo pack'
+                        aria_label='Download ' ~ record.name ~ ' as JPG'
+                    %} &nbsp;
                     {% endif %}
                     {% if record.file_png %}
-                    <a href="{{ ''| page }}?{{queries}}&download={{record.file_png.id}}&file_name={{record.file_png.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  PNG</a> &nbsp;
+                    {% partial 'components/download-link'
+                        file=record.file_png
+                        group='brand-kit'
+                        label='PNG'
+                        title='Logo pack'
+                        aria_label='Download ' ~ record.name ~ ' as PNG'
+                    %} &nbsp;
                     {% endif %}
                     {% if record.file_eps %}
-                    <a href="{{ ''| page }}?{{queries}}&download={{record.file_eps.id}}&file_name={{record.file_eps.file_name|replace({' ': '_'})}}" title="Logo pack" class="btn btn-primary"><i class="pr p-download"></i>  SVG</a>
+                    {% partial 'components/download-link'
+                        file=record.file_eps
+                        group='brand-kit'
+                        label='SVG'
+                        title='Logo pack'
+                        aria_label='Download ' ~ record.name ~ ' as SVG'
+                    %}
                     {% endif %}
                 </div>
             </div>

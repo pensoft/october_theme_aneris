@@ -1,0 +1,20 @@
+{#
+	Download button for a file attachment.
+
+	The link points at the media-download page so the URL carries the original
+	file name (Matomo reports the real name instead of the hashed disk name).
+
+	Parameters:
+		file        - file attachment (required)
+		group       - category segment used in the URL, eg. "newsletters"
+		label       - button text, defaults to "Download"
+		aria_label  - accessible name, defaults to "Download <file name>"
+		title       - title attribute, defaults to the original file name
+		extra_class - additional CSS classes for the link
+		icon_class  - download icon classes, false to omit the icon
+#}
+{% set download_file_name = file.file_name|replace({' ': '_'})|url_encode %}
+{% set download_url = 'media-download'|page({ group: group|default('media'), id: file.id, filename: download_file_name }, false) %}
+<a href="{{ download_url }}" download="{{ file.file_name }}" class="btn btn-primary matomo_download {{ extra_class }}" title="{{ title|default(file.file_name) }}" aria-label="{{ aria_label|default('Download ' ~ file.file_name) }}" data-file-name="{{ file.file_name }}">
+	{% if icon_class is not same as(false) %}<i class="{{ icon_class|default('pr p-download') }}" aria-hidden="true"></i> {% endif %}{{ label|default('Download') }}
+</a>

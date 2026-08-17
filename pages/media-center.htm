@@ -148,27 +148,43 @@ function onStart(){
                             <h3 class="card_title">Download {{record.name}}</h3>
                             <div class="download-buttons">
                                 {% if record.file_jpg %}
-                                <a href="{{record.file_jpg.path}}" download="{{record.file_jpg.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}} as JPG">
-                                    <i class="pr p-download" aria-hidden="true"></i> JPG
-                                </a>
+                                {% partial 'components/download-link'
+                                    file=record.file_jpg
+                                    group='brand-kit'
+                                    label='JPG'
+                                    title=record.name
+                                    aria_label='Download ' ~ record.name ~ ' as JPG'
+                                %}
                                 {% endif %}
 
                                 {% if record.file_png %}
-                                <a href="{{record.file_png.path}}" download="{{record.file_png.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}} as PNG">
-                                    <i class="pr p-download" aria-hidden="true"></i> PNG
-                                </a>
+                                {% partial 'components/download-link'
+                                    file=record.file_png
+                                    group='brand-kit'
+                                    label='PNG'
+                                    title=record.name
+                                    aria_label='Download ' ~ record.name ~ ' as PNG'
+                                %}
                                 {% endif %}
 
                                 {% if record.file_eps %}
-                                <a href="{{record.file_eps.path}}" download="{{record.file_eps.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}} as SVG">
-                                    <i class="pr p-download" aria-hidden="true"></i> SVG
-                                </a>
+                                {% partial 'components/download-link'
+                                    file=record.file_eps
+                                    group='brand-kit'
+                                    label='SVG'
+                                    title=record.name
+                                    aria_label='Download ' ~ record.name ~ ' as SVG'
+                                %}
                                 {% endif %}
 
                                 {% if record.file_pdf %}
-                                <a href="{{record.file_pdf.path}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Download {{record.name}} as PDF (opens in new window)">
-                                    <i class="pr p-download" aria-hidden="true"></i> PDF
-                                </a>
+                                {% partial 'components/download-link'
+                                    file=record.file_pdf
+                                    group='brand-kit'
+                                    label='PDF'
+                                    title=record.name
+                                    aria_label='Download ' ~ record.name ~ ' as PDF'
+                                %}
                                 {% endif %}
                             </div>
                         </div>
@@ -197,9 +213,12 @@ function onStart(){
                     {% if record.file %}
                     <div class="col-xs-12">
                         <div class="text-center">
-                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
-                                <i class="pr p-download" aria-hidden="true"></i> Download
-                            </a>
+                            {% partial 'components/download-link'
+                                file=record.file
+                                group='promotional-materials'
+                                title=record.name
+                                aria_label='Download ' ~ record.name
+                            %}
                         </div>
                     </div>
                     {% endif %}
@@ -247,9 +266,12 @@ function onStart(){
                             {% endif %}
 
                             {% if record.file %}
-                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
-                                <i class="pr p-download" aria-hidden="true"></i> Download
-                            </a>
+                            {% partial 'components/download-link'
+                                file=record.file
+                                group='newsletters'
+                                title=record.name
+                                aria_label='Download ' ~ record.name
+                            %}
                             {% endif %}
                         </div>
                     </div>
@@ -273,9 +295,12 @@ function onStart(){
 
                         <p>Attachment: {{record.file.file_name}}, {{record.file.size}}</p>
 
-                        <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
-                            <i class="pr p-download" aria-hidden="true"></i> Download
-                        </a>
+                        {% partial 'components/download-link'
+                            file=record.file
+                            group='videos'
+                            title=record.name
+                            aria_label='Download ' ~ record.name
+                        %}
                         {% endif %}
 
                         {% if record.youtube_url %}
@@ -305,9 +330,12 @@ function onStart(){
                     {% if record.file %}
                     <div class="col-xs-12">
                         <div class="text-center">
-                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.name}}">
-                                <i class="pr p-download" aria-hidden="true"></i> Download
-                            </a>
+                            {% partial 'components/download-link'
+                                file=record.file
+                                group='infographics'
+                                title=record.name
+                                aria_label='Download ' ~ record.name
+                            %}
                         </div>
                     </div>
                     {% endif %}
@@ -335,9 +363,12 @@ function onStart(){
                     {% if record.file %}
                     <div class="col-xs-12">
                         <div class="text-center">
-                            <a href="{{record.file.path}}" download="{{record.file.file_name}}" class="btn btn-primary matomo_download" aria-label="Download {{record.title}}">
-                                <i class="pr p-download" aria-hidden="true"></i> Download
-                            </a>
+                            {% partial 'components/download-link'
+                                file=record.file
+                                group='scientific-posters'
+                                title=record.title
+                                aria_label='Download ' ~ record.title
+                            %}
                         </div>
                     </div>
                     {% endif %}

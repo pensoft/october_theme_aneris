@@ -79,7 +79,13 @@ return Redirect::to('/media-center/newsletters');
                     &nbsp;
 
                     {% if record.file %}
-                    <a href="{{ record.file.path }}#{{record.file.file_name}}" target="_blank" title="{{record.name}}" class="btn btn-primary">Download</a>
+                    {% partial 'components/download-link'
+                        file=record.file
+                        group='newsletters'
+                        title=record.name
+                        aria_label='Download ' ~ record.name
+                        icon_class=false
+                    %}
                     {% endif %}
                 </div>
             </div>

@@ -71,7 +71,13 @@ return Redirect::to('/media-center/videos');
 
                 <p>Attachment: {{record.file.file_name}}, {{record.file.size}}</p>
 
-                <p><a class=" btn btn-primary" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}">Download</a></p>
+                <p>{% partial 'components/download-link'
+                    file=record.file
+                    group='videos'
+                    title=record.name
+                    aria_label='Download ' ~ record.name
+                    icon_class=false
+                %}</p>
 
                 {% endif %}
 

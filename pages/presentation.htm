@@ -68,7 +68,13 @@ return Redirect::to('/media-center/flyer');
             <div class="col-xs-12">
                 <div class="text-center">
                     <h3><b>{{record.name}}</b></h3>
-                    <a href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.file.file_name|replace({' ': '_'})}}" title="{{record.name}}" class="btn btn-primary">Download</a>
+                    {% partial 'components/download-link'
+                        file=record.file
+                        group='infographics'
+                        title=record.name
+                        aria_label='Download ' ~ record.name
+                        icon_class=false
+                    %}
                 </div>
             </div>
             {% endif %}

@@ -1,0 +1,72 @@
+url = "/media-center/download/:group/:id/:filename"
+title = "Download"
+is_hidden = 0
+robot_index = "noindex"
+robot_follow = "nofollow"
+==
+<?php
+use System\Models\File;
+
+/**
+ * Streams an attachment under a URL that carries the original file name, eg.
+ * /media-center/download/newsletters/42/ANERIS_Newsletter_1.pdf
+ *
+ * Attachments are stored on disk under a hashed name, so linking straight to
+ * the storage path makes Matomo report the hash instead of the real file. The
+ * file is resolved by its ID only, the :group and :filename segments carry the
+ * human readable information for the download reports.
+ */
+function onStart()
+{
+	$file = File::find((int) $this->param('id'));
+
+	if (!$file || !$this->isMediaAttachment($file)) {
+		return Response::make('File not found', 404);
+	}
+
+	$localPath = $file->getLocalPath();
+
+	if (!file_exists($localPath)) {
+		return Response::make('File not found', 404);
+	}
+
+	$headers = [];
+
+	if ($contentType = $file->getContentType()) {
+		$headers['Content-Type'] = $contentType;
+	}
+
+	// The original file name is used for the download, not the hashed disk name
+	return Response::download($localPath, $file->file_name, $headers);
+}
+
+/**
+ * Only public files attached to the media and library records are served here,
+ * so the page cannot be used to reach protected uploads by guessing IDs.
+ */
+function isMediaAttachment($file)
+{
+	$allowedOwners = [
+		'Pensoft\Media\Models\MediaLogos',
+		'Pensoft\Media\Models\Flyers',
+		'Pensoft\Media\Models\Newsletters',
+		'Pensoft\Media\Models\Presentations',
+		'Pensoft\Media\Models\Pressreleases',
+		'Pensoft\Media\Models\Graphic',
+		'Pensoft\Media\Models\Videos',
+		'Pensoft\Media\Models\Documents',
+		'Pensoft\Media\Models\Books',
+		'Pensoft\Media\Models\Galleries',
+		'Pensoft\Media\Models\Podcasts',
+		'Pensoft\Media\Models\Webinars',
+		'Pensoft\Library\Models\Library',
+	];
+
+	if (!$file->isPublic()) {
+		return false;
+	}
+
+	return in_array(ltrim((string) $file->attachment_type, '\\'), $allowedOwners, true);
+}
+?>
+==
