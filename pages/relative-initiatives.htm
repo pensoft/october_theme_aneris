@@ -1,0 +1,41 @@
+url = "/relative-initiatives"
+layout = "default"
+title = "Relative initiatives"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[siteSearchInclude]
+==
+<?php
+use Pensoft\Initiatives\Models\Initiative;
+
+function onStart(){
+    $this['initiatives'] = Initiative::orderBy('sort_order')->get();
+}
+?>
+==
+{% component 'siteSearchInclude' %}
+
+<main id="main-content" role="main">
+    <section class="container initiatives-list" aria-label="Relative initiatives">
+        <div class="row">
+            {% for initiative in initiatives %}
+            <div class="col-lg-4 col-md-6 col-xs-12 initiative-col">
+                <article class="initiative-card">
+                    {% if initiative.logo %}
+                    <div class="initiative-logo">
+                        <img src="{{ initiative.logo.path }}" alt="{{ initiative.title }} logo" loading="lazy">
+                    </div>
+                    {% endif %}
+                    <h3 class="initiative-title">{{ initiative.title }}</h3>
+                    <div class="initiative-description">{{ initiative.description|raw }}</div>
+                    {% if initiative.website %}
+                    <a href="{{ initiative.website }}" class="btn btn-primary initiative-link" target="_blank" rel="noopener">Visit website</a>
+                    {% endif %}
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
