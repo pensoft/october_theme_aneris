@@ -96,16 +96,7 @@ function onStart(){
                 </div>
                 {% endif %}
 
-                {% if presentations.count() %}
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="card-container text-center">
-                        <a href="#others" aria-label="View Others">
-                            <span class="card_image_container" style="background: url({{'other.svg'|media}}) center center no-repeat;" role="img" aria-label="Others icon"></span>
-                            <span class="media_label">Others</span>
-                        </a>
-                    </div>
-                </div>
-                {% endif %}
+
 
                 {% if graphics.count() %}
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -130,6 +121,20 @@ function onStart(){
                     </div>
                 </div>
                 {% endif %}
+
+                {% if presentations.count() %}
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="card-container text-center">
+                        <a href="#factsheets" aria-label="View Factsheets">
+                            <div class="card_border">
+                                <span class="card_image_container" style="background: url({{'promotional-materials.svg'|media}}) center center no-repeat;" role="img" aria-label="Factsheets icon"></span>
+                            </div>
+                            <span class="media_label">Factsheets</span>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
             </nav>
 
             <!--tabs content	-->
@@ -380,6 +385,54 @@ function onStart(){
                 {% endfor %}
             </section>
             {% endif %}
+
+            {% if presentations.count() %}
+            <section class="row card-container-row start-xs flyer" id="factsheets" style="display: none;" aria-labelledby="factsheets-heading">
+                <h2 id="factsheets-heading" class="sr-only">Factsheets</h2>
+                {% for record in presentations %}
+                {% spaceless %}
+                <article class="col-md-4 col-xs-12 center-xs mt-4">
+                    <h3><strong>{{record.name}}</strong></h3>
+                    {% if record.presentation_image %}
+                    <figure class="logo_container">
+                        <img src="{{record.presentation_image.path}}" alt="{{record.name}}" loading="lazy">
+                    </figure>
+                    {% endif %}
+
+                    <div class="col-xs-12">
+                        <div class="text-center">
+                            {% if record.url %}
+                            <a class="btn btn-primary mb-1" href="{{record.url}}" target="_blank" rel="noopener noreferrer" aria-label="View {{record.name}} (opens in new window)">View online</a>
+                            {% endif %}
+
+                            {% if record.file %}
+                            {% partial 'components/download-link'
+                            file=record.file
+                            group='factsheets'
+                            title=record.name
+                            aria_label='Download ' ~ record.name
+                            %}
+                            {% endif %}
+
+                            {% for lang_file in record.file_lang_versions %}
+                            {% partial 'components/download-link'
+                            file=lang_file
+                            group='factsheets'
+                            label=lang_file.title|default(lang_file.file_name)
+                            title=record.name
+                            aria_label='Download ' ~ record.name ~ ' - ' ~ lang_file.file_name
+                            %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </article>
+                {% endspaceless %}
+                {% else %}
+                <p>{{ noRecordsMessage }}</p>
+                {% endfor %}
+            </section>
+            {% endif %}
+            
         </div>
     </div>
 </main>
