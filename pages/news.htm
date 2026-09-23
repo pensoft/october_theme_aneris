@@ -145,6 +145,9 @@ $this['related'] = $related;
             <div class="col-xs-12">
                 <div class="content">
                     {{article.content|raw}}
+                    {% if article.id == 155 %}
+                    {% partial 'components/pdf-carousel' file='Za_pechat.pdf' title='The marine world through the lens of science' %}
+                    {% endif %}
                     {% component 'gallery' %}
                 </div>
             </div>
